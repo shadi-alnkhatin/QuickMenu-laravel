@@ -68,7 +68,7 @@ public function details($id)
     // Get the authenticated user
     $user = Auth::user();
     $menu = $user->menus()->findOrFail($id);
-    $categories = $menu->categories;
+    $categories = $menu->categories()->with('menuItems')->get();
 
     // Return the menu details view with menu and categories
     return view('menu-details', compact('menu', 'categories'));

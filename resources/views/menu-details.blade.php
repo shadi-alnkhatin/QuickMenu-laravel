@@ -50,10 +50,13 @@
     }
     .expandable-content {
       padding-left: 20px;
+      display: none;
     }
     .add-category-button {
       font-size: 1rem;
     }
+
+
   </style>
  @endsection
 @section('content')
@@ -63,7 +66,7 @@
 <div class="container my-4">
   <!-- Header Section -->
   <div class="header">
-    <h2>Manage Menu - Lukka Cafe</h2>
+    <h2>Manage Menu - {{$menu->name}}</h2>
     <button type="button" class="btn btn-primary add-category-button" data-coreui-toggle="modal" data-coreui-target="#addCategoryModal">
       <i class="fas fa-plus"></i> Add Category
     </button>
@@ -79,18 +82,21 @@
           </div>
           <div class="actions">
             <button class="btn btn-light"><i class="fas fa-file-alt text-primary"></i></button>
-            <button class="btn btn-light"data-coreui-toggle="modal" data-coreui-target="#addMenuItemsModal"><i class="fas fa-plus text-primary"></i></button>
+            <button class="btn btn-light add-menu-item-btn" data-category-id="{{ $category->id }}" data-coreui-toggle="modal" data-coreui-target="#addMenuItemsModal">
+                <i class="fas fa-plus text-primary"></i>
+            </button>
             <button class="btn btn-light"><i class="fas fa-pen text-primary"></i></button>
             <button class="btn btn-light"><i class="fas fa-trash-alt text-danger"></i></button>
             <i class="fas fa-chevron-down expand-icon text-secondary"></i>
           </div>
         </div>
       </div>
+      @forelse ($category->menuItems as $item)
       <div class="expandable-content">
         <div class="card subcategory">
           <div class="card-body d-flex justify-content-between align-items-center">
             <div class="subcategory-title">
-              <i class="fas fa-bars me-2"></i>Soğuk içecekler
+              <i class="fas fa-bars me-2"></i>{{$item->name}}
             </div>
             <div class="actions">
               <button class="btn btn-light"><i class="fas fa-pen text-primary"></i></button>
@@ -99,6 +105,9 @@
           </div>
         </div>
       </div>
+         @empty
+            <strong>No items available in this category.</strong>
+        @endforelse
     </div>
 
 
@@ -123,13 +132,13 @@
     </form>
 </x-custom_modal>
 <x-custom_modal id="addMenuItemsModal" title="Add Menu Item">
-<form method="POST" action="{{route('menu_item.store')}}">
+<form method="POST" action="{{route('menu_item.store')}}" enctype='multipart/form-data'>
     @csrf
     <div class="mb-3">
         <label for="MenuItemName" class="form-label">Name</label>
         <input type="text" class="form-control" id="MenuItemName" name="MenuItemName" placeholder="Enter item name">
         <input type="hidden" name="menu_id" value="{{ $menu->id }}">
-        <input type="hidden" name="category_id" value="{{ $category->id }}">
+        <input type="hidden" name="category_id" id="category_id">
 
     </div>
     <div class="mb-3">
@@ -141,7 +150,12 @@
         <label for="MenuItemPrice" class="form-label">Price</label>
         <input type="text" class="form-control" id="MenuItemPrice" name="MenuItemPrice" placeholder="Enter item price">
     </div>
-    <input type="hidden" name="available" id="available" value="1">
+    <div class="mb-3">
+        <label for="ItemImage" class="form-label">Upload Cover Image</label>
+        <input name="ItemImage" type="file" id="ItemImage" class="form-control" accept="image/*" />
+    </div>
+
+  <input type="hidden" name="available" id="available" value="1">
 
     <button type="submit" class="btn btn-success">Add</button>
     @slot('footer')
@@ -152,19 +166,5 @@
 </x-custom_modal>
 
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.5.0/dist/js/coreui.bundle.min.js"></script>
-<script>
-  // JavaScript for expand/collapse functionality
-  document.querySelectorAll('.expand-icon').forEach(icon => {
-    icon.addEventListener('click', () => {
-      const expandableContent = icon.closest('.category').nextElementSibling;
-      if (expandableContent.style.display === 'none' || expandableContent.style.display === '') {
-        expandableContent.style.display = 'block';
-        icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
-      } else {
-        expandableContent.style.display = 'none';
-        icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
-      }
-    });
-  });
-</script>
+<script src="{{asset('assets')}}/js/menu-details.js"></script>
 @endsection

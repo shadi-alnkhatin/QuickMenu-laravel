@@ -29,7 +29,7 @@ class Menu extends Model
     public function categories(){
         return $this->hasMany(Category::class);
     }
-    public function items()
+    public function menuItems()
 {
     return $this->hasMany(MenuItem::class);
 }

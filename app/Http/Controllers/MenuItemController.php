@@ -16,8 +16,12 @@ class MenuItemController extends Controller
             'category_id' => 'required',
             'menu_id' => 'required',
             'available' => 'required',
+            'ItemImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+
 
         ]);
+
+        $itemImage= $request->file('ItemImage')->store('items_images','public');
         MenuItem::create([
             'name' => $validated['MenuItemName'],
             'description' => $validated['MenuItemDescription'],
@@ -25,9 +29,10 @@ class MenuItemController extends Controller
             'category_id' => $validated['category_id'],
             'menu_id' => $validated['menu_id'],
             'available' => $validated['available'],
+            'image_url'=>$itemImage
         ]);
 
         return redirect()->back()->with('success', 'Menu item added successfully!');
     }
-    
+
 }
