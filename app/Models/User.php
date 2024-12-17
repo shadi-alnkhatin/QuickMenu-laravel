@@ -6,11 +6,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable,Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'deleted',
     ];
 
     /**
@@ -32,6 +34,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function saveBillableInstance()
+    {
+        $this->forceSave();
+    }
 
     /**
      * Get the attributes that should be cast.
@@ -49,4 +55,18 @@ class User extends Authenticatable
     public function menus(){
         return $this->hasMany(Menu::class);
     }
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isUser()
+    {
+        return $this->role === 'user';
+    }
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
 }

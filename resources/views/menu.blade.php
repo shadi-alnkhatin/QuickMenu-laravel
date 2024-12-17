@@ -22,10 +22,11 @@
       <h2 class="d-flex align-items-center text-dark">
         <i class="fas fa-store-alt me-2"></i> Menus
       </h2>
-      <button class="btn btn-primary text-light">
+      <a href="{{route('menu.create')}}" class="btn btn-primary text-light">
         <i class="fas fa-plus"></i> Add Menu
-      </button>
+      </a>
     </div>
+        @if($menus->isNotEmpty())
 
             @foreach ($menus as $menu)
             <div class="card mb-3 shadow-sm">
@@ -40,15 +41,20 @@
                     </p>
                   </div>
                   <div class="btn-group">
-                    <button class="btn btn-outline-primary"><i class="fas fa-file-alt"></i></button>
-                    <button class="btn btn-outline-secondary"><i class="fas fa-qrcode"></i></button>
-                    <button class="btn btn-outline-secondary"><i class="fas fa-eye"></i></button>
-                    <button class="btn btn-outline-secondary"><i class="fas fa-pen"></i></button>
-                    <button class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
+                    <a href="" class="btn btn-outline-primary"><i class="fas fa-file-alt"></i></a href="">
+                        <a href="{{ route('qr.form', ['url' =>  $menu->id]) }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-qrcode"></i>
+                        </a>
+                    <a href="" class="btn btn-outline-secondary"><i class="fas fa-eye"></i></a href="">
+                    <a href="" class="btn btn-outline-secondary"><i class="fas fa-pen"></i></a href="">
+                    <a href="" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a href="">
                   </div>
                 </div>
               </div>
             @endforeach
+            @else
+            <div><h2>There is no menu add to see your menu</h2></div>
+            @endif
   </div>
 
 @endsection

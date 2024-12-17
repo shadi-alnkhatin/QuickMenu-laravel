@@ -15,6 +15,6 @@ class CategoryController extends Controller
             'name' => $request->categoryName,
             'menu_id' => $request->menu_id,
         ]);
-        dd($catagory);
+       
     }
 }

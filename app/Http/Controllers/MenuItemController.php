@@ -21,6 +21,7 @@ class MenuItemController extends Controller
 
         ]);
 
+
         $itemImage= $request->file('ItemImage')->store('items_images','public');
         MenuItem::create([
             'name' => $validated['MenuItemName'],

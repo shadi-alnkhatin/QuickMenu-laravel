@@ -131,35 +131,51 @@
         @endslot
     </form>
 </x-custom_modal>
+
 <x-custom_modal id="addMenuItemsModal" title="Add Menu Item">
 <form method="POST" action="{{route('menu_item.store')}}" enctype='multipart/form-data'>
     @csrf
     <div class="mb-3">
         <label for="MenuItemName" class="form-label">Name</label>
-        <input type="text" class="form-control" id="MenuItemName" name="MenuItemName" placeholder="Enter item name">
+         <input type="text" class="form-control" id="MenuItemName" name="MenuItemName" placeholder="Enter item name">
         <input type="hidden" name="menu_id" value="{{ $menu->id }}">
         <input type="hidden" name="category_id" id="category_id">
+        @error('MenuItemName')
+        <small class="text-danger">{{ $message }}</small>
+         @enderror
 
     </div>
     <div class="mb-3">
         <label for="MenuItemDescription" class="form-label">Description</label>
         <input type="text" class="form-control" id="MenuItemDescription" name="MenuItemDescription" placeholder="Enter item description">
+        @error('MenuItemDescription')
+        <small class="text-danger">{{ $message }}</small>
+        @enderror
     </div>
+
 
     <div class="mb-3">
         <label for="MenuItemPrice" class="form-label">Price</label>
         <input type="text" class="form-control" id="MenuItemPrice" name="MenuItemPrice" placeholder="Enter item price">
+        @error('MenuItemPrice')
+        <small class="text-danger">{{ $message }}</small>
+        @enderror
     </div>
     <div class="mb-3">
         <label for="ItemImage" class="form-label">Upload Cover Image</label>
         <input name="ItemImage" type="file" id="ItemImage" class="form-control" accept="image/*" />
+        @error('ItemImage')
+        <small class="text-danger">{{ $message }}</small>
+        @enderror
     </div>
 
   <input type="hidden" name="available" id="available" value="1">
 
     <button type="submit" class="btn btn-success">Add</button>
     @slot('footer')
-
+     @error('available'||'category_id'||'menu_id')
+        <small class="text-danger">there is a error , please try again !</small>
+    @enderror
     @endslot
 </form>
 
@@ -167,4 +183,5 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.5.0/dist/js/coreui.bundle.min.js"></script>
 <script src="{{asset('assets')}}/js/menu-details.js"></script>
+
 @endsection

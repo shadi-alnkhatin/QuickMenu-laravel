@@ -25,54 +25,52 @@
  @endsection
 
 @section('content')
-<div class="container">
-    <h1>Generate Custom QR Code</h1>
-    <form action="{{ route('qr.generate') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="url">URL:</label>
-            <input type="url" name="url" id="url" class="form-control" placeholder="Enter URL" required>
-        </div>
-        <div class="form-group">
+<div class="container w-75">
+    <h1> QR Code</h1>
+        <div class="mb-3">
             <label for="color">QR Code Color:</label>
-            <input type="color" name="color" id="color" class="form-control">
+            <input type="color" name="color" id="color" class="form-control  w-50">
         </div>
-        <div class="form-group">
-            <label for="text">Custom Text:</label>
-            <input type="text" name="text" id="text" class="form-control" placeholder="Enter custom text">
+        <div id="preview" class="mx-4">
+            @if ($qrCode)
+                {{$qrCode}}
+            @endif
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Generate QR Code</button>
-    </form>
+        <button id="download" type="button" class="btn btn-primary mt-3 w-50">DownLoad</button>
+
+
 </div>
-<div id="preview" class="mt-3"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/save-svg-as-png"></script>
+
+<script src="{{asset('assets')}}/js/save-as-png.js"></script>
 <script>
    const preview = document.getElementById('preview');
-document.getElementById('url').addEventListener('input', updatePreview);
-document.getElementById('color').addEventListener('input', updatePreview);
+
+document.getElementById('color').addEventListener('change', updatePreview);
 
 function updatePreview() {
-    const url = document.getElementById('url').value;
     const color = document.getElementById('color').value;
 
-    if (url) {
-        axios.post('{{ route('qr.generate') }}', {
-            url: url,
-            color: color,
-        })
-        .then(response => {
-            if (response.data.qrCode) {
-                // Render the QR Code
-                preview.innerHTML = response.data.qrCode;
-            }
-        })
-        .catch(error => {
-            console.error('Error generating QR code:', error);
-        });
-    } else {
-        preview.innerHTML = ''; // Clear the preview if URL is empty
-    }
+
+        axios.post('{{ route('qr.generate',["url"=> $menuid ]) }}', {
+         color: color,
+    })
+    .then(response => {
+        if (response) {
+            preview.innerHTML = response.data; // Render the SVG
+            console.log(response);
+
+        } else {
+            preview.innerHTML = '<p>QR Code generation failed.</p>'; // Handle errors gracefully
+        }
+    })
+    .catch(error => {
+        console.error('Error generating QR code:', error);
+    });
+
+
 }
 
 </script>
