@@ -5,10 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        .header-section {
+          :root {
+        --primary-color: {{ $menu->primary_color ?? '#555' }};
+    }
+    .btn-custom{
+        background-color: var(--primary-color);
+        color: white;
+    }
+    .btn-custom:hover{
+        background-color: var(--primary-color);
+        color: white;
+
+    }
+    .btn-custom:focus{
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px var(--primary-color);
+    }
+
+.header-section {
     background-color: #f8f9fa; /* Light background */
     border-color: #ddd; /* Light gray border */
     background-repeat: no-repeat;
@@ -25,7 +45,7 @@
     width: 120px;
     height: 120px;
     object-fit: cover;
-    border: 3px solid #007bff; /* Blue border around logo */
+    border: 3px solid var(--primary-color); /* Blue border around logo */
 }
 
 .cafe-name {
@@ -47,8 +67,28 @@
 }
 
 .cafe-details i {
-    color: #007bff; /* Blue color for icons */
+    color: var(--primary-color); /* Blue color for icons */
     margin-right: 5px;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.menu-card-img{
+    width: 230px;
+    height: 150px;
+    object-fit: cover;
+}
+@media(max-width:760px){
+    .menu-card-img{
+      width: 100%;
+        max-height: 200px;
+    object-fit: cover;
+}
 }
 
     </style>

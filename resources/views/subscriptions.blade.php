@@ -52,7 +52,7 @@
                         <tr>
                           <th>Username</th>
                           <th>Email</th>
-                          <th>type</th>
+
                           <th>Status</th>
                           <th>Price</th>
                           <th>End At</th>
@@ -65,18 +65,15 @@
                         <tr class="align-middle">
                             <td>{{$subscription->user->name}}</td>
                             <td>{{$subscription->user->email}}</td>
-                            <td>{{$subscription->type}}</td>
+
                             <td>{{$subscription->stripe_status}}</td>
                             <td>{{$subscription->stripe_price}}$</td>
-                            <td>{{$subscription->ends_at}}</td>
+                            <td>{{ $subscription->ends_at->format('Y_m_d') }}</td>
+
                             {{-- <td><span class="badge bg-success-gradient">Active</span></td> --}}
                             <td>
 
-                                <button type="button" class="btn btn-info me-2 edit-user-btn">
-                                 <svg class="icon text-light">
-                                     <use xlink:href="{{ asset('assets/vendors/@coreui/icons/svg/free.svg#cil-pen') }}"></use>
-                                 </svg>
-                                </button>
+
                                 <button class="btn btn-danger delete-user-btn"
                                      type="button">
                                 <svg class="icon text-light">

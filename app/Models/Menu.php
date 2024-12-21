@@ -19,6 +19,7 @@ class Menu extends Model
         'logo_url',
         'cover_url',
         'user_id',
+        'primary_color',
     ];
 
 

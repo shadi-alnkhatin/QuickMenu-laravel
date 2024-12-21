@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Events\NewOrderPlaced;
 use App\Models\Menu;
 use App\Models\Order;
 use Illuminate\Support\Facades\Http;
@@ -14,6 +15,8 @@ class Cart extends Component
     public $user_id;
     public $menuId;
     public $tableNumber;
+    public $name;
+    public $message;
     public $cartItems = [];
     public $isCartVisible = false;
 
@@ -64,6 +67,9 @@ class Cart extends Component
             'user_id' => $this->user_id,
             'menu_id' => $this->menuId,
             'total_price' => $this->getTotalPrice(),
+            'table_number'=>$this->tableNumber,
+            'customer_name'=>$this->name,
+            'customer_message'=>$this->message,
 
         ]);
         foreach ($this->cartItems as $item) {
@@ -73,9 +79,29 @@ class Cart extends Component
                 'price' => $item['price'],
             ]);
         }
+        broadcast(new NewOrderPlaced(order: $order))->toOthers();
+
         $this->cartItems=[];
         $this->isCartVisible = false;
     }
+
+    public function decrementQuantity($dishId)
+    {
+         foreach ($this->cartItems as &$item) {
+             if ($item['id'] == $dishId && $item['quantity'] > 1) {
+                 $item['quantity'] -= 1;
+             }
+         }
+    }
+    public function incrementQuantity($dishId)
+    {
+        foreach ($this->cartItems as &$item) {
+            if ($item['id'] == $dishId) {
+                $item['quantity'] += 1;
+            }
+        }
+    }
+
     public function render()
     {
         return view('livewire.cart');

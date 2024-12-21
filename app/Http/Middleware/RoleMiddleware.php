@@ -20,7 +20,6 @@ class RoleMiddleware
     {
         // Check if the user is not logged in
         if (!$request->user()) {
-            // Redirect to the login page with the intended URL
             return redirect()->guest(route('login'))->with('url.intended', $request->fullUrl());
         }
 

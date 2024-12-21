@@ -41,12 +41,12 @@
                     </p>
                   </div>
                   <div class="btn-group">
-                    <a href="" class="btn btn-outline-primary"><i class="fas fa-file-alt"></i></a href="">
+                    <a href="{{route('menu.details',['id'=>$menu->id])}}" class="btn btn-outline-primary"><i class="fas fa-file-alt"></i></a href="">
                         <a href="{{ route('qr.form', ['url' =>  $menu->id]) }}" class="btn btn-outline-secondary">
                             <i class="fas fa-qrcode"></i>
                         </a>
-                    <a href="" class="btn btn-outline-secondary"><i class="fas fa-eye"></i></a href="">
-                    <a href="" class="btn btn-outline-secondary"><i class="fas fa-pen"></i></a href="">
+                    <a href="{{route('customer_menu',['menuId' =>  $menu->id])}}" target="blank" class="btn btn-outline-secondary"><i class="fas fa-eye"></i></a href="">
+                    <a href="{{route('edit_menu.index',['id' =>  $menu->id])}}" class="btn btn-outline-secondary"><i class="fas fa-pen"></i></a href="">
                     <a href="" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a href="">
                   </div>
                 </div>

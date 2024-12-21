@@ -1,5 +1,5 @@
 <div class="container my-4 p-4 border rounded shadow-lg header-section"
-style="background-image: url('{{asset("storage")}}/{{ $resturantInfo->cover_url}}'); "
+style="background-image: url('{{asset("storage")}}/{{ $resturantInfo->cover_url}}'); background-position:center; background-repeat:no-repeat;background-size:cover;"
 >
     <div class="row align-items-center cafe-info">
         <!-- Image Section -->

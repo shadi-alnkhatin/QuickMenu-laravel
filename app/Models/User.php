@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'deleted',
+        'role',
     ];
 
     /**
@@ -66,7 +67,7 @@ class User extends Authenticatable
     }
     public function subscriptions()
     {
-        return $this->hasMany(Subscription::class);
+        return $this->hasOne(Subscription::class)->latestOfMany();
     }
 
 }

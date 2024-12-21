@@ -70,7 +70,10 @@
         <!-- Color Picker for Theme Color -->
         <div class="form-outline mb-4">
           <label for="themeColor" class="form-label">Choose Theme Color</label>
-          <input type="color" id="themeColor" class="form-control form-control-color" />
+          <input type="color" id="themeColor" name="primary_color" class="form-control form-control-color" />
+          @error('primary_color')
+          <small class="text-danger">{{ $message }}</small>
+          @enderror
         </div>
 
         <!-- File upload for Logo -->

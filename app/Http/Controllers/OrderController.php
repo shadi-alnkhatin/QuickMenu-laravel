@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
     public function store(Request $request)
     {
-        dd("Order controller Called");
+
         // Validate the input
         $validated = $request->validate([
             'user_id' => 'required',
@@ -21,8 +23,6 @@ class OrderController extends Controller
             'items.*.quantity' => 'required|integer|min:1',
             'items.*.price' => 'required|numeric|min:0',
         ]);
-
-        dd($validated);
 
 
         $order = Order::create([
@@ -41,6 +41,21 @@ class OrderController extends Controller
         }
 
 
+    }
+
+    public function viewOrders(Request $request)
+    {
+        $userId= Auth::id();
+        // Display all menus
+        $menus = Menu::where('user_id',$userId)->get();
+        $menuId = $request->get('menu_id'); // Selected menu ID from request
+
+        // Retrieve orders for the selected menu or all if none selected
+        $orders = Order::when($menuId, function ($query, $menuId) {
+            return $query->where('menu_id', $menuId);
+        })->get();
+
+        return view('resturant-orders', compact('orders', 'menus', 'menuId'));
     }
 
 }

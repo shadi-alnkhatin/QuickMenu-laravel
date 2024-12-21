@@ -51,28 +51,20 @@
                         <tr>
                           <th>Username</th>
                           <th>Email</th>
+                          <th>Subject</th>
                           <th>Message</th>
-                          <th>Actions</th>
+
                         </tr>
                       </thead>
                       <tbody>
-                        <tr class="align-middle">
-                            <td>Shadi</td>
-                            <td>shadisaad222@gmail.com</td>
-                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis perferendis culpa eos illum incidunt. Facilis optio molestiae voluptate? Aperiam, nulla!</td>
-
-                            <td>
-                                <button type="button" class="btn btn-info me-2 edit-user-btn">
-                                 <svg class="icon text-light">
-                                     <use xlink:href="{{ asset('assets/vendors/@coreui/icons/svg/free.svg#cil-pen') }}"></use>
-                                 </svg>
-                                </button>
-                                <button class="btn btn-danger delete-user-btn"
-                                     type="button" >
-                                <svg class="icon text-light">
-                                  <use xlink:href="{{asset('assets')}}/vendors/@coreui/icons/svg/free.svg#cil-trash"></use>
-                                </svg></button></td>
-                          </tr>
+                       @foreach ($contacts as $contact )
+                            <tr class="align-middle">
+                                <td>{{$contact->name}}</td>
+                                <td>{{$contact->email}}</td>
+                                <td>{{$contact->subject}}</td>
+                                <td>{{$contact->message}}</td>
+                             </tr>
+                       @endforeach
                       </tbody>
                     </table>
                   </div>

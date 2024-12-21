@@ -19,10 +19,13 @@ class Subscription extends Model
         'trial_ends_at',
         'ends_at',
     ];
-
+    protected $casts = [
+        'ends_at' => 'datetime', // Ensures ends_at is treated as a Carbon instance
+    ];
     // Define the relationship to User model
     public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+{
+    return $this->belongsTo(User::class);
+}
+
 }

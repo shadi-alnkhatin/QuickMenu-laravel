@@ -1,4 +1,5 @@
 <div class="sidebar sidebar-fixed sidebar-dark bg-dark-gradient border-end" id="sidebar">
+
     <div class="sidebar-header border-bottom">
       <div class="sidebar-brand">
             <h1>          Quick Menu
@@ -49,35 +50,30 @@
 
     @if (auth()->check()&&(auth()->user()->isUser()))
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-      <li class="nav-item"><a class="nav-link" href="index.html">
-          <svg class="nav-icon">
-            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
-          </svg><span data-coreui-i18n="dashboard">Dashboard</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="{{route('dashboard')}}">
+            Dashboard</a></li>
 
-      <li class="nav-title" data-coreui-i18n=" Manage Your Menu">
+      <li class="nav-title" >
         Manage Your Menu</li>
       <li class="nav-item"><a class="nav-link" href="{{route('menu.index')}}">
           <svg class="nav-icon">
             <use xlink:href="{{asset('assets')}}/vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
-          </svg><span data-coreui-i18n="Your Menus">Your Menus</span></a></li>
-      <li class="nav-item"><a class="nav-link" href="charts.html">
+          </svg><span >Your Menus</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="{{route('orders.index')}}">
           <svg class="nav-icon">
             <use xlink:href="{{asset('assets')}}/vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
-          </svg><span data-coreui-i18n="Orders">Orders</span></a></li>
-          <li class="nav-title" data-coreui-i18n=" Account">
+          </svg><span >Orders</span></a></li>
+          <li class="nav-title" >
             Account</li>
       <li class="nav-item"><a class="nav-link" href="datatables.html">
           <svg class="nav-icon">
             <use xlink:href="{{asset('assets')}}/vendors/@coreui/icons/svg/free.svg#cil-spreadsheet"></use>
           </svg> Your Memership</a></li>
-      <li class="nav-item"><a class="nav-link" href="google-maps.html">
+      <li class="nav-item"><a class="nav-link" href="{{route('profile')}}">
           <svg class="nav-icon">
             <use xlink:href="{{asset('assets')}}/vendors/@coreui/icons/svg/free.svg#cil-map"></use>
           </svg> Profile</a></li>
-          <li class="nav-item"><a class="nav-link" href="google-maps.html">
-            <svg class="nav-icon">
-              <use xlink:href="{{asset('assets')}}/vendors/@coreui/icons/svg/free.svg#cil-map"></use>
-            </svg> Logout</a></li>
+          <li class="nav-item">  @livewire('logout-button')</li>
 
     </ul>
     @elseif (  auth()->check()&&(auth()->user()->isAdmin()))
