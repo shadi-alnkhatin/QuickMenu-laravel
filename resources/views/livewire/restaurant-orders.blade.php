@@ -20,7 +20,7 @@
         @else
         <div class="tab-content rounded-bottom">
             <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1000">
-            <table class="table table-striped border datatable">
+            <table class="table table-striped border table-hover table-responsive">
                 <thead>
                     <tr>
 
@@ -34,8 +34,8 @@
                 <tbody>
                     @foreach($orders as $order)
                     <tr>
-                        <td>{{ $order->table_number }}</td>
-                        <td>${{ $order->total_price }}</td>
+                        <td class="text-center">{{ $order->table_number }}</td>
+                        <td class="text-center " ><strong>${{ $order->total_price }}</strong></td>
                         <!-- Apply styles based on status -->
                         <td>
                             <span class="badge
@@ -95,6 +95,7 @@
         let currentChannel = null;
 
         const subscribeToChannel = (menuId) => {
+            const notificationUrl = "{{ auth()->user()->notificationUrl() }}";
             if (currentChannel) {
                 // Unsubscribe from the previous channel
                 pusher.unsubscribe(currentChannel.name);
@@ -118,7 +119,7 @@
                         body: `Check the order table  `,
                         icon: 'https://cdn-icons-png.flaticon.com/512/3500/3500833.png'
                     });
-                    const audio = new Audio('/sounds/notification.mp3');
+                    const audio = new Audio(notificationUrl);
                     audio.play();
                 }
             });
@@ -130,6 +131,7 @@
 
         // New: Listen to the Waiter Called channel
         const subscribeToWaiterCallChannel = (menuId) => {
+            const notificationUrl = "{{ auth()->user()->notificationUrl() }}";
             const waiterCallChannelName = `menu.${menuId}`;
             const waiterCallChannel = pusher.subscribe(waiterCallChannelName);
 
@@ -145,7 +147,7 @@
                         icon: 'https://cdn-icons-png.flaticon.com/512/6200/6200100.png'
                     });
 
-                    const audio = new Audio('/sounds/notification.mp3');
+                    const audio = new Audio(notificationUrl);
                     audio.play();
                 }
             });

@@ -20,6 +20,7 @@ class Menu extends Model
         'cover_url',
         'user_id',
         'primary_color',
+        'visit_count',
     ];
 
 

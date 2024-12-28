@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -52,6 +53,15 @@ class CategoryController extends Controller
     return redirect()->back()->with('success', 'Category Updated successfully!');
 
     }
-
+ public function destroy($id){
+    $userID=Auth::id();
+    // Delete a category
+    $category=Category::findOrFail($id);
+    if($category->menu->user_id!=$userID){
+        return redirect()->back()->with('error', 'You can not delete this category.');
+    }
+    $category->delete();
+    return redirect()->back()->with('success', 'Category deleted successfully!');
+ }
 
 }

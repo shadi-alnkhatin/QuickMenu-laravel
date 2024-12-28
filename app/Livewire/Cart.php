@@ -52,7 +52,7 @@ class Cart extends Component
     public function removeItem($dishId)
     {
         // Remove item from the cart
-        $this->cartItems = array_filter($this->cartItems, fn($item) => $item['id'] != $dishId);
+        $this->cartItems = array_values(array_filter($this->cartItems, fn($item) => $item['id'] != $dishId));
     }
     public function toggleCartVisibility()
     {
@@ -83,6 +83,7 @@ class Cart extends Component
 
         $this->cartItems=[];
         $this->isCartVisible = false;
+        $this->dispatch('TostOrderPlaced',  'Order Placed successfully!');
     }
 
     public function decrementQuantity($dishId)

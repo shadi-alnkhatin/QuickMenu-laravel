@@ -10,6 +10,8 @@
     <meta name="description" content="CoreUI - Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,SCSS,HTML,RWD,Dashboard">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Users</title>
 
     <meta name="msapplication-TileColor" content="#ffffff">
@@ -24,6 +26,19 @@
     <script src="{{asset('assets')}}/js/config.js"></script>
     <script src="{{asset('assets')}}/js/color-modes.js"></script>
     <link href="{{asset('assets')}}/vendors/datatables.net-bs5/css/dataTables.bootstrap5.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" />
+    <style>
+          .toast {
+         opacity: 1 !important;
+         z-index: 9999; /* Ensure it appears above other elements */
+         }
+         .toast-success {
+             background-color: #1d9f3c !important; /* Light green */
+             color: #dfe0df !important; /* Dark green text */
+         }
+    </style>
  @endsection
 @section('content')
 
@@ -60,28 +75,29 @@
                         </tr>
                       </thead>
                       <tbody>
-
                         @foreach ($subscriptions as $subscription)
                         <tr class="align-middle">
-                            <td>{{$subscription->user->name}}</td>
-                            <td>{{$subscription->user->email}}</td>
-
-                            <td>{{$subscription->stripe_status}}</td>
-                            <td>{{$subscription->stripe_price}}$</td>
-                            <td>{{ $subscription->ends_at->format('Y_m_d') }}</td>
-
-                            {{-- <td><span class="badge bg-success-gradient">Active</span></td> --}}
+                            <td>{{ $subscription->user->name }}</td>
+                            <td>{{ $subscription->user->email }}</td>
                             <td>
-
-
-                                <button class="btn btn-danger delete-user-btn"
-                                     type="button">
-                                <svg class="icon text-light">
-                                  <use xlink:href="{{asset('assets')}}/vendors/@coreui/icons/svg/free.svg#cil-trash"></use>
-                                </svg></button></td>
-                          </tr>
+                                <select class="form-select change-status" data-id="{{ $subscription->id }}">
+                                    <option value="active" {{ $subscription->stripe_status === 'active' ? 'selected' : '' }}>Active</option>
+                                    <option value="disabled" {{ $subscription->stripe_status === 'disabled' ? 'selected' : '' }}>Disabled</option>
+                                </select>
+                            </td>
+                            <td>{{ $subscription->stripe_price }}$</td>
+                            <td>{{ $subscription->ends_at->format('Y-m-d') }}</td>
+                            <td>
+                                <button class="btn btn-danger delete-user-btn" type="button">
+                                    <svg class="icon text-light">
+                                        <use xlink:href="{{ asset('assets/vendors/@coreui/icons/svg/free.svg#cil-trash') }}"></use>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
                         @endforeach
-                      </tbody>
+                    </tbody>
+
                     </table>
                   </div>
                 </div>
@@ -114,6 +130,36 @@
     <script src="{{asset('assets')}}/vendors/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
     <script src="{{asset('assets')}}/js/datatables.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const statusDropdowns = document.querySelectorAll('.change-status');
+
+    statusDropdowns.forEach(dropdown => {
+        dropdown.addEventListener('change', function () {
+            const subscriptionId = this.dataset.id;
+            const newStatus = this.value;
+            console.log("status changed");
+            fetch(`/admin/subscriptions/${subscriptionId}/update-status`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
+                },
+                body: JSON.stringify({ status: newStatus })
+            })
+            .then(response => {
+                if (response.ok) {
+                    toastr.success('Subscription status updated successfully!');
+                } else {
+                    toastr.error('Failed to update status. Please try again.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+
+});
+
     </script>
 @endsection
 

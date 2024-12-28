@@ -79,26 +79,42 @@
 
 
         <div class="form-outline mb-4">
-            <label for="logoUpload" class="form-label">Upload Logo</label>
+
+            <div class=" ">
+                @if ($menu->logo_url)
+                    <p class="mb-1">Current Logo:</p>
+                    <img src="{{ asset('storage') }}/{{ $menu->logo_url }}" alt="Current Logo"
+                        class="img-fluid rounded border"
+                        style="height: 80px; width: auto;">
+                @else
+                    <p class="text-muted">No logo uploaded yet</p>
+                @endif
+            </div>
             <input name="logo" type="file" id="logoUpload" class="form-control" accept="image/*" />
-            @if ($menu->logo_url)
-                <p>Current Logo: <img src="{{asset("storage")}}/{{$menu->logo_url}}" alt="Current Logo" height="50"></p>
-            @endif
             @error('logo')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
 
         <div class="form-outline mb-4">
-            <label for="coverUpload" class="form-label">Upload Cover Image</label>
+
+            <div class="">
+                @if ($menu->cover_url)
+                    <p class="mb-1">Current Cover:</p>
+                    <img src="{{ asset('storage') }}/{{ $menu->cover_url }}" alt="Current Cover"
+                        class="img-fluid rounded border"
+                        style="height: 150px; width: auto;">
+                @else
+                    <p class="text-muted">No cover image uploaded yet</p>
+                @endif
+            </div>
             <input name="cover" type="file" id="coverUpload" class="form-control" accept="image/*" />
-            @if ($menu->cover_url)
-                <p>Current Cover: <img src="{{asset("storage")}}/{{$menu->cover_url}}" alt="Current Cover" height="100"></p>
-            @endif
             @error('cover')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
+
+
 
         <!-- Submit button -->
         <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Update Menu</button>

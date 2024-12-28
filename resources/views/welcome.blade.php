@@ -10,8 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-
-    <title>Chain App Dev - App Landing Page HTML5 Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" />
+    <title>Quick Menu</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -193,6 +195,14 @@ footer {
   padding-top: 300px;
   padding-bottom: 60px;
 }
+.toast {
+opacity: 1 !important;
+z-index: 9999; /* Ensure it appears above other elements */
+}
+.toast-success {
+    background-color: #1d9f3c !important; /* Light green */
+    color: #dfe0df !important; /* Dark green text */
+}
 
     </style>
   </head>
@@ -201,36 +211,63 @@ footer {
 
 
 
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
-              <img src="{{asset('assets')}}/images/brand/logo.png" alt="Chain App Dev">
-            </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-              <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="#services">Services</a></li>
-              <li class="scroll-to-section"><a href="#about">About</a></li>
-              <li class="scroll-to-section"><a href="#pricing">Pricing</a></li>
-              <li class="scroll-to-section"><a href="#newsletter">Newsletter</a></li>
-              <li><div class="gradient-button"><a id="modal_trigger" href="/register"><i class="fa fa-sign-in-alt"></i> Sign Up Now</a></div></li>
-            </ul>
-            <a class='menu-trigger'>
-                <span>Menu</span>
-            </a>
-            <!-- ***** Menu End ***** -->
-          </nav>
+    <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            <img class="mx-5" src="{{asset('assets')}}/images/brand/logo.png" alt="Chain App Dev">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="#services">Services</a></li>
+                            <li class="scroll-to-section"><a href="#about">About</a></li>
+                            <li class="scroll-to-section"><a href="#pricing">Pricing</a></li>
+
+                            @if (auth()->check())
+
+                                <div class="nav-item dropdown" style="">
+                                    <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-user"></i> {{ auth()->user()->name }}
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                                        @if(auth()->user()?->subscriptions)
+                                            <li>
+                                                <a class="dropdown-item" href="/dashboard">
+                                                    <i class="fa fa-tachometer-alt"></i> Dashboard
+                                                </a>
+                                            </li>
+                                        @endif
+                                        <li>
+                                            @livewire('logout-button')
+                                        </li>
+                                    </ul>
+                                </div>
+                            @else
+                                <li>
+                                    <div class="gradient-button">
+                                        <a id="modal_trigger" href="/register">
+                                            <i class="fa fa-sign-in-alt"></i> Sign Up Now
+                                        </a>
+                                    </div>
+                                </li>
+
+                            @endif
+                        </ul>
+                        <a class="menu-trigger">
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
+    </header>
+
 
 
 </div>
@@ -747,6 +784,16 @@ footer {
     </div>
   </footer>
 
+  @if(session('success'))
+  <script>
+      toastr.success("{{ session('success') }}");
+  </script>
+    @endif
+    @if(session('subscription_success'))
+    <script>
+        toastr.success("Subscription created successfully! You can go to your dashboard now By Clicking in your name in the top of the page.");
+    </script>
+      @endif
 
   <!-- Scripts -->
   <script>
@@ -910,8 +957,7 @@ footer {
   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
   crossorigin="anonymous"></script>
 
-    <script src="{{asset('vendors')}}/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="{{asset('vendors')}}/landing-js/owl-carousel.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>  <script src="{{asset('vendors')}}/landing-js/owl-carousel.js"></script>
   <script src="{{asset('vendors')}}/landing-js/custom.js"></script>
   <script src="{{asset('vendors')}}/landing-js/animation.js"></script>
   <script src="{{asset('vendors')}}/landing-js/imagesloaded.js"></script>

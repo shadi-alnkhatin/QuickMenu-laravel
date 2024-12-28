@@ -25,21 +25,58 @@
  @endsection
 
 @section('content')
-<div class="container w-75">
-    <h1> QR Code</h1>
-        <div class="mb-3">
-            <label for="color">QR Code Color:</label>
-            <input type="color" name="color" id="color" class="form-control  w-50">
+<div class="container mt-5">
+    <div class="row">
+        <!-- QR Code Section -->
+        <div class="col-lg-5 col-md-12 text-center ">
+            <h1 class="mb-4"> Your Menu QR Code</h1>
+            <div class="mb-3">
+                <label for="color" class="form-label fw-bold">QR Code Color:</label>
+                <input type="color" name="color" id="color" class="form-control w-50 mx-auto">
+            </div>
+            <div id="preview" class="mt-4">
+                @if ($qrCode)
+                    <div class="">
+                        {{$qrCode}}
+                    </div>
+                @endif
+            </div>
+            <button id="download" type="button" class="btn btn-primary mt-4 mb-3 px-4 py-2">Download QR Code</button>
         </div>
-        <div id="preview" class="mx-4">
-            @if ($qrCode)
-                {{$qrCode}}
-            @endif
+
+        <!-- Steps Section -->
+        <div class="col-lg-6 col-md-12 " style="margin-left: 60px; margin-top:200px">
+            <h3 class=" mb-4">Steps to Use Your QR Code</h3>
+            <div class="steps-container">
+                <details class="mb-3">
+                    <summary class="fw-bold text-primary" style="cursor: pointer; font-size: 18px;">
+                        Step 1: Download the QR Code
+                    </summary>
+                    <p class="ms-3 mt-2 text-secondary">Click the "Download QR Code" button to save the code to your device. Ensure you save it somewhere accessible.</p>
+                </details>
+                <details class="mb-3">
+                    <summary class="fw-bold text-primary" style="cursor: pointer; font-size: 18px;">
+                        Step 2: Design a Poster with Your Brand
+                    </summary>
+                    <p class="ms-3 mt-2 text-secondary">Use a tool like Canva to design a poster with your QR code, incorporating your restaurant's logo and colors.</p>
+                </details>
+                <details class="mb-3">
+                    <summary class="fw-bold text-primary" style="cursor: pointer; font-size: 18px;">
+                        Step 3: Print and Display
+                    </summary>
+                    <p class="ms-3 mt-2 text-secondary">Print the design and place it in visible areas of your restaurant, such as on tables or the counter.</p>
+                </details>
+                <details class="mb-3">
+                    <summary class="fw-bold text-primary" style="cursor: pointer; font-size: 18px;">
+                        Step 4: Encourage Customer Use
+                    </summary>
+                    <p class="ms-3 mt-2 text-secondary">Invite your customers to scan the QR code to view the menu or place orders conveniently.</p>
+                </details>
+            </div>
         </div>
-        <button id="download" type="button" class="btn btn-primary mt-3 w-50">DownLoad</button>
-
-
+    </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/save-svg-as-png"></script>

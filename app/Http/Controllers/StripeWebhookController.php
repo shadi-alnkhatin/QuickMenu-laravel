@@ -89,7 +89,7 @@ class StripeWebhookController extends CashierController {
                     return response('Event not handled', 400);
             }
 
-            return response('Webhook received successfully', 200);
+            return view('welcome');
 
         } catch (SignatureVerificationException $e) {
             return response('Webhook signature verification failed', 400);

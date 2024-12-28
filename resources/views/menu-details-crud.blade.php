@@ -8,6 +8,9 @@
         </div>
         <button type="submit" class="btn btn-success">Add</button>
     </form>
+    @slot('footer')
+
+    @endslot
 </x-custom_modal>
 
 <x-custom_modal id="editCategoryModal" title="Edit Category">
@@ -18,8 +21,11 @@
             <label for="EditcategoryName" class="form-label">Category Name</label>
             <input type="text" class="form-control" id="EditcategoryName" name="EditcategoryName" placeholder="Enter category name">
         </div>
-        <button type="submit" class="btn btn-success">Add</button>
+        <button type="submit" class="btn btn-success">Update</button>
     </form>
+    @slot('footer')
+
+    @endslot
 </x-custom_modal>
 
 <x-custom_modal id="addMenuItemsModal" title="Add Menu Item">
@@ -60,6 +66,9 @@
 
     <button type="submit" class="btn btn-success">Add</button>
 </form>
+@slot('footer')
+
+@endslot
 </x-custom_modal>
 
 
@@ -115,3 +124,41 @@
     @endslot
     </x-custom_modal>
 
+    <x-custom_modal id="deleteMenuItemModal" title="Delete Menu Item">
+        <form method="POST" enctype="multipart/form-data">
+            @method('DELETE')
+            @csrf
+            <div class="modal-body text-center">
+                <h3 class="mb-3">Are you sure you want to delete this Menu Item?</h3>
+                <p class="text-muted">This action is inreversible. Once deleted, the menu item cannot be restored.</p>
+
+                <div class="d-flex justify-content-center gap-2 mt-4">
+                    <button type="submit" class="btn btn-danger text-light">Yes, Delete</button>
+                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+            @slot('footer')
+
+            @endslot
+        </form>
+    </x-custom_modal>
+    <x-custom_modal id="deleteCategoryModal" title="Delete Category">
+        <form method="POST" enctype="multipart/form-data">
+            @method('DELETE')
+            @csrf
+            <div class="modal-body text-center">
+                <h3 class="mb-3">Are you sure you want to delete this Category?</h3>
+                <p class="text-muted">This action is inreversible. Once deleted, the category and thier items cannot be restored.</p>
+
+                <div class="d-flex justify-content-center gap-2 mt-4">
+                    <button type="submit" class="btn btn-danger text-light">Yes, Delete</button>
+                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+            @slot('footer')
+
+            @endslot
+        </form>
+    </x-custom_modal>

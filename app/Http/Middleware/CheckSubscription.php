@@ -18,24 +18,20 @@ class CheckSubscription
      */
     public function handle(Request $request, Closure $next)
     {
-        // Check if the user is authenticated
+
         if (Auth::check()) {
             $user = Auth::user();
 
-            // Check if the user has an active subscription
             $subscription = $user->subscriptions;
 
-            // If no subscription or expired, redirect to the landing page
-            if (!$subscription || $subscription->ends_at->isPast()) {
+            if (!$subscription || $subscription->ends_at->isPast()||$subscription->stripe_status=='disabled') {
                 return redirect()->route('home')
-                    ->with('message', 'Your subscription has expired or is inactive. Please subscribe to continue.');
+                    ->with('success', 'Your subscription has expired or is inactive. Please subscribe to continue.');
             }
 
-            // If subscription is active, proceed to the next request
             return $next($request);
         }
 
-        // Redirect unauthenticated users to the login page or landing page
         return redirect()->route('login')->with('message', 'Please log in to access the system.');
     }
 }

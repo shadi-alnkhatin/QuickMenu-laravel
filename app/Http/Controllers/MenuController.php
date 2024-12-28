@@ -12,7 +12,6 @@ use Storage;
 class MenuController extends Controller
 {
 
-    //
 
     public function index(){
         $userId= Auth::id();
@@ -59,7 +58,7 @@ $user->menus()->create([ // Use menus() (the relationship method) instead of men
 ]);
 
     // Redirect to the menu list page with a success message
-    return redirect()->route('menu.index');
+    return redirect()->route('menu.index')->with('success', 'Menu Created Successfully');
 }
 
 public function edit($id){
@@ -138,8 +137,8 @@ public function destroy($id){
     $menu = $user->menus()->find($id);
     $menu->delete();
 
-    
-    return redirect()->route('menu.index');
+
+    return redirect()->route('menu.index')->with('success', 'Menu Deleted Successfully');
 }
 
 }

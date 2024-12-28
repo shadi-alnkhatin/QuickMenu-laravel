@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'deleted',
         'role',
+        'notification_url',
     ];
 
     /**
@@ -68,6 +69,9 @@ class User extends Authenticatable
     public function subscriptions()
     {
         return $this->hasOne(Subscription::class)->latestOfMany();
+    }
+    public function notificationUrl(){
+        return $this->notification_url;
     }
 
 }

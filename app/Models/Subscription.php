@@ -24,8 +24,13 @@ class Subscription extends Model
     ];
     // Define the relationship to User model
     public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function isActive()
+    {
+        return $this->status === 'active' && $this->expires_at > now();
+    }
 
 }

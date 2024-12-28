@@ -65,13 +65,13 @@
           </svg><span >Orders</span></a></li>
           <li class="nav-title" >
             Account</li>
-      <li class="nav-item"><a class="nav-link" href="datatables.html">
-          <svg class="nav-icon">
-            <use xlink:href="{{asset('assets')}}/vendors/@coreui/icons/svg/free.svg#cil-spreadsheet"></use>
-          </svg> Your Memership</a></li>
+      <li class="nav-item"><a class="nav-link" href="{{route('contact')}}">
+        <svg class="nav-icon">
+            <use xlink:href="{{asset('assets')}}/vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+          </svg> Contact With Admin</a></li>
       <li class="nav-item"><a class="nav-link" href="{{route('profile')}}">
           <svg class="nav-icon">
-            <use xlink:href="{{asset('assets')}}/vendors/@coreui/icons/svg/free.svg#cil-map"></use>
+            <use xlink:href="{{asset('assets')}}/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
           </svg> Profile</a></li>
           <li class="nav-item">  @livewire('logout-button')</li>
 

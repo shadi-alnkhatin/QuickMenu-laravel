@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="theme-color" content="#ffffff">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" />
     <!-- Vendors styles-->
     <link rel="stylesheet" href="{{asset('assets')}}/vendors/simplebar/css/simplebar.css">
     <!-- Main styles for this application-->
@@ -44,6 +47,14 @@
             background-color: #574bff;
             color: #fff;
         }
+        .toast {
+            opacity: 1 !important;
+            z-index: 9999;
+      }
+      .toast-success {
+          background-color: #1d9f3c !important; /* Light green */
+          color: #dfe0df !important; /* Dark green text */
+      }
     </style>
 @endsection
 @section('content')
@@ -77,8 +88,13 @@
 
         <!-- Submit button -->
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-custom">Send Message</button>
+            <button type="submit" class="btn btn-primary text-light">Send Message</button>
         </div>
     </form>
 </div>
+@if(session('success'))
+<script>
+    toastr.success("{{ session('success') }}");
+</script>
+@endif
 @endsection

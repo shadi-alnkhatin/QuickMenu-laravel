@@ -18,6 +18,7 @@
     "dependencies": {
         "laravel-echo": "^1.17.1",
         "pusher-js": "^8.4.0-rc2",
-        "save-svg-as-png": "^1.4.17"
+        "save-svg-as-png": "^1.4.17",
+        "toastr": "^2.1.4"
     }
 }

@@ -22,6 +22,7 @@ class NavCustomerMenu extends Component
     }
     public function selectCategory($categoryId)
     {
+        $this->dispatch('closeOffcanvas');
         $this->dispatch('categorySelected', $categoryId);
     }
     public function showCallWaiterForm()
@@ -40,7 +41,7 @@ class NavCustomerMenu extends Component
 
         // Reset form and hide it
         $this->reset('tableNumber', 'showForm');
-        session()->flash('success', 'Waiter called successfully!');
+        $this->dispatch('toastrWaiterCalled',  'Waiter called successfully!');
     }
 
     public function render()

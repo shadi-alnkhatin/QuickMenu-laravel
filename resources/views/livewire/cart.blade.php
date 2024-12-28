@@ -2,7 +2,7 @@
     <!-- View Order Button -->
     @if(count($cartItems) > 0)
         <button class="btn btn-custom w-100 position-fixed bottom-0" wire:click="toggleCartVisibility">
-            View Order
+            View Order ({{count($cartItems)}})
         </button>
     @endif
 
@@ -17,27 +17,37 @@
 
             <ul class="list-group mb-3">
                 @foreach($cartItems as $item)
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center  ">
-                            <strong style="font-size: 18px; margin-right: 30px" class=" ">{{ $item['name'] }}</strong>
-                            <div class="d-flex align-items-center">
-                                <!-- Quantity Input -->
-                                <button class="btn btn-sm btn-custom me-1" wire:click="decrementQuantity({{ $item['id'] }})">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <input type="number" class="form-control form-control-sm text-center"
-                                       style="width: 60px;" min="1"
-                                       wire:model.lazy="cartItems.{{ $loop->index }}.quantity">
-                                <button class="btn btn-sm btn-custom ms-1" wire:click="incrementQuantity({{ $item['id'] }})">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <!-- Item Info and Quantity Control -->
+                    <div class="d-flex flex-grow-1 align-items-center justify-content-between">
+                        <!-- Item Name -->
+                        <strong class="text-truncate" style="font-size: 18px; max-width: 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            {{ $item['name'] }}
+                        </strong>
+
+                        <!-- Quantity Control -->
+                        <div class="d-flex align-items-center" style="margin-right:5px ">
+                            <button class="btn btn-sm btn-custom me-1" wire:click="decrementQuantity({{ $item['id'] }})">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" class="form-control form-control-sm text-center"
+                                   style="width: 50px;" min="1"
+                                   wire:model.lazy="cartItems.{{ $loop->index }}.quantity">
+                            <button class="btn btn-sm btn-custom ms-1" wire:click="incrementQuantity({{ $item['id'] }})">
+                                <i class="fas fa-plus"></i>
+                            </button>
                         </div>
-                        <div class="d-flex">
-                            <span class="text-success me-3" style="font-size: 18px; font-weight:500;">${{ $item['price'] * $item['quantity'] }}</span>
-                            <button class="btn btn-danger btn-sm" wire:click="removeItem({{ $item['id'] }})"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </li>
+                    </div>
+
+                    <!-- Price and Remove Button -->
+                    <div class="d-flex align-items-center">
+                        <span class="text-success me-3" style="font-size: 18px; font-weight: 500;">${{ $item['price'] * $item['quantity'] }}</span>
+                        <button class="btn btn-danger btn-sm" wire:click="removeItem({{ $item['id'] }})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </li>
+
                 @endforeach
             </ul>
 
@@ -70,3 +80,15 @@
         </div>
     @endif
 </div>
+@script
+<script>
+      $wire.on('TostOrderPlaced', (message) => {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                positionClass: 'toast-top-right',
+            };
+            toastr.success(message);
+        });
+</script>
+@endscript

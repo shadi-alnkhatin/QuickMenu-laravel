@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MenuItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class MenuItemController extends Controller
@@ -78,8 +79,27 @@ class MenuItemController extends Controller
     // Save the updated item
     $menuItem->save();
 
-    return redirect()->back()->with('success', 'Menu item Addeed successfully!');
+    return redirect()->back()->with('success', 'Menu item Updated successfully!');
 }
+public function destroy($id){
+    $userID=Auth::id();
 
+    // Find the menu item by ID
+    $menuItem = MenuItem::findOrFail($id);
+
+    //check if the item belong to a menu that for this user !
+    if($menuItem->menu->user_id!=$userID){
+        return redirect()->back()->with('error', 'You can not delete this item!');
+    }
+
+
+    // Delete the menu item
+    $menuItem->delete();
+
+    // Delete the image from storage
+    Storage::disk('public')->delete('items_images/'.$menuItem->image_url);
+
+    return redirect()->back()->with('success', 'Menu item Deleted Successfully');
+}
 
 }

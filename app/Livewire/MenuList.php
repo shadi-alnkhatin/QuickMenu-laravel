@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Category;
+use App\Models\Menu;
 use App\Models\MenuItem;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -15,7 +16,13 @@ class MenuList extends Component
 
     public function mount()
     {
-    if (!$this->categoryId) {
+        if (!session()->has("visited_menu_{$this->menuId}")) {
+            $menu = Menu::findOrFail($this->menuId);
+            $menu->increment('visit_count');
+            session()->put("visited_menu_{$this->menuId}", true);
+        }
+
+        if (!$this->categoryId) {
             $this->categoryId = Category::where('menu_id', $this->menuId)->value('id');
         }
         $this->loadDishes();
