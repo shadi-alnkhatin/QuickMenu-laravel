@@ -9,7 +9,7 @@
     <meta name="description" content="CoreUI - Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,SCSS,HTML,RWD,Dashboard">
-    <title>Users</title>
+    <title>Orders</title>
     @livewireStyles
 
     <meta name="msapplication-TileColor" content="#ffffff">

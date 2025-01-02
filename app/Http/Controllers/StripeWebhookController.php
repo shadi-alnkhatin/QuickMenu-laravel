@@ -40,13 +40,6 @@ class StripeWebhookController extends CashierController {
                     foreach ($lineItems as $lineItem) {
                         $amountPaid = $lineItem->amount / 100; // Convert from cents to dollars
                         $totalAmount += $amountPaid;
-
-                        // Optionally, save each item to the database
-                        // SubscriptionItem::create([
-                        //     'subscription_id' => $subscriptionId,
-                        //     'description' => $lineItem->description,
-                        //     'amount' => $amountPaid,
-                        // ]);
                     }
 
                     // Save the total invoice amount to the database
@@ -65,32 +58,12 @@ class StripeWebhookController extends CashierController {
 
                 case 'customer.subscription.created':
                 case 'customer.subscription.updated':
-                        // Stripe::setApiKey(env('STRIPE_SECRET'));
-
-                        // $subscription = $event->data->object;
-                        // $subscriptionDetails = \Stripe\Subscription::retrieve($subscription->id); // Get full details
-                        // $user = User::where('stripe_id', $subscription->customer)->first();
-                        // // Log subscription data for debugging
-                        // Log::info('Subscription created or updated', ['subscription' => $subscriptionDetails]);
-
-                        // // Save to database
-                        // Subscription::create([
-                        //     'stripe_id' => $subscriptionDetails->id,
-                        //     'user_id' => $user->id, // You may need to map this to your user
-                        //     'stripe_status' => $subscriptionDetails->status,
-                        //     'type' => 'premium', // Define your subscription type
-                        //     'ends_at' => Carbon::createFromTimestamp($subscriptionDetails->current_period_end),
-                        // ]);
-                        // break;
-
-                // Add more cases for other events if needed
                 default:
                     // Unexpected event type
                     return response('Event not handled', 400);
             }
 
-            return view('welcome');
-
+            return response()->json(['status' => 'success'], 200);
         } catch (SignatureVerificationException $e) {
             return response('Webhook signature verification failed', 400);
         }

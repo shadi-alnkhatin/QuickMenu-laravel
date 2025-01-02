@@ -51,6 +51,7 @@
 
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1000">
+                    <div class="table-responsive">
                     <table class="table table-striped border datatable">
                       <thead>
                         <tr>
@@ -58,7 +59,6 @@
                           <th>Email</th>
                           <th>Date registered</th>
                           <th>Role</th>
-                          <th>Status</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
@@ -70,7 +70,7 @@
                             <td>{{$user->email}}</td>
                             <td>{{{$user->created_at->format('Y-m-d')}}}</td>
                             <td>{{$user->role}}</td>
-                            <td><span class="badge bg-success-gradient">Active</span></td>
+                            
                             <td>
                                 {{-- <a class="btn btn-success me-2" href="#">
                                 <svg class="icon">
@@ -95,6 +95,7 @@
                         @endforeach
                       </tbody>
                     </table>
+                    </div>
                   </div>
                 </div>
 

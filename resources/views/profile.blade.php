@@ -10,7 +10,7 @@
     <meta name="description" content="CoreUI - Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,SCSS,HTML,RWD,Dashboard">
-    <title>Users</title>
+    <title>Profile</title>
 
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
@@ -28,7 +28,7 @@
 @section('content')
 
     <!-- Main Content-->
-    <div class="py-12">
+    <div >
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
@@ -41,6 +41,7 @@
                     <livewire:profile.update-password-form />
                 </div>
             </div>
+            @if (auth()->check()&&(auth()->user()->isUser()))
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     <livewire:profile.update-notification-sound />
@@ -52,6 +53,7 @@
                     <livewire:profile.delete-user-form />
                 </div>
             </div>
+            @endif
         </div>
     </div>
 

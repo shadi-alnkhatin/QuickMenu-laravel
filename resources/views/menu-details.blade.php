@@ -20,7 +20,7 @@
   <script src="{{asset('assets')}}/js/color-modes.js"></script>
   <link href="{{asset('assets')}}/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu List</title>
+  <title>Menu Details</title>
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
@@ -65,7 +65,7 @@
     }
     .toast-success {
         background-color: #1d9f3c !important;
-        color: #dfe0df !important; 
+        color: #dfe0df !important;
     }
 
 

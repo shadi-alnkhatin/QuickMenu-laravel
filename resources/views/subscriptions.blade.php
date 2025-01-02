@@ -12,7 +12,7 @@
     <meta name="keyword" content="Bootstrap,Admin,Template,SCSS,HTML,RWD,Dashboard">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Users</title>
+    <title>Subscriptions</title>
 
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
@@ -62,6 +62,7 @@
 
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1000">
+                    <div class="table-responsive">
                     <table class="table table-striped border datatable">
                       <thead>
                         <tr>
@@ -85,7 +86,7 @@
                                     <option value="disabled" {{ $subscription->stripe_status === 'disabled' ? 'selected' : '' }}>Disabled</option>
                                 </select>
                             </td>
-                            <td>{{ $subscription->stripe_price }}$</td>
+                            <td class="text-center"><strong>{{ $subscription->stripe_price }}$</strong></td>
                             <td>{{ $subscription->ends_at->format('Y-m-d') }}</td>
                             <td>
                                 <button class="btn btn-danger delete-user-btn" type="button">
@@ -100,6 +101,7 @@
 
                     </table>
                   </div>
+                </div>
                 </div>
 
             </div>

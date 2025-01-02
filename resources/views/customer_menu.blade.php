@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
+    <link rel="stylesheet" href="{{asset('assets/css/customer_menu.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -30,21 +31,6 @@
         box-shadow: 0 0 0 2px var(--primary-color);
     }
 
-
-
-.header-section {
-    background-color: #f8f9fa; /* Light background */
-    border-color: #ddd; /* Light gray border */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    filter: contrast(0.8);
-}
-.cafe-info{
-    background-color: #33333389;
-
-}
-
 .cafe-logo {
     width: 120px;
     height: 120px;
@@ -52,55 +38,10 @@
     border: 3px solid var(--primary-color); /* Blue border around logo */
 }
 
-.cafe-name {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.cafe-description {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 1rem;
-}
-
-.cafe-details p {
-    font-size: 0.95rem;
-    color: #555;
-    margin: 0;
-}
 
 .cafe-details i {
     color: var(--primary-color); /* Blue color for icons */
     margin-right: 5px;
-}
-input[type="number"] {
-    -moz-appearance: textfield;
-}
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-.toast {
-    opacity: 1 !important;
-    z-index: 9999; 
-    }
-    .toast-success {
-        background-color: #1d9f3c !important; /* Light green */
-        color: #dfe0df !important; /* Dark green text */
-    }
-.menu-card-img{
-    width: 230px;
-    height: 150px;
-    object-fit: cover;
-}
-@media(max-width:760px){
-    .menu-card-img {
-    width: 100% !important; /* Ensures the image takes the full width of its container */
-    height: 230px; /* Maintains the aspect ratio of the image */
-    object-fit: cover; /* Ensures the image covers the container while maintaining its aspect ratio */
-}
 }
 
     </style>

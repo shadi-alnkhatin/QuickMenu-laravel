@@ -14,7 +14,7 @@
 <script src="{{asset('assets')}}/js/color-modes.js"></script>
 <link href="{{asset('assets')}}/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu List</title>
+<title>Menus List</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
 @endsection
@@ -33,29 +33,45 @@
 
             @foreach ($menus as $menu)
             <div class="card mb-3 shadow-sm">
-                <div class="card-body d-flex align-items-center">
-                  <img src="{{asset("storage")}}/{{$menu->logo_url}}" alt="Restaurant Logo" class="rounded-circle me-3" style="width: 50px; height: 50px; object-fit: cover;">
-                  <div class="flex-grow-1">
-                    <h5 class="card-title mb-1">{{$menu->name}}</h5>
-                    <p class="card-text text-muted mb-2">
-                      <i class="fas fa-wave-square me-1"></i> Scans: {{$menu->visit_count}}
-                      <span class="mx-2">|</span>
-                      <i class="fas fa-calendar-alt me-1"></i> Created: {{$menu->created_at->format('Y-m-d')}}
-                    </p>
-                  </div>
-                  <div class="btn-group">
-                    <a href="{{route('menu.details',['id'=>$menu->id])}}" class="btn btn-outline-primary"><i class="fas fa-file-alt"></i></a href="">
-                        <a href="{{ route('qr.form', ['url' =>  $menu->id]) }}" class="btn btn-outline-secondary">
+                <div class="card-body d-flex flex-column flex-sm-row align-items-center">
+                    <!-- Logo -->
+                    <img src="{{ asset('storage') }}/{{ $menu->logo_url }}" alt="Restaurant Logo"
+                         class="rounded-circle me-0 me-sm-3 mb-3 mb-sm-0"
+                         style="width: 50px; height: 50px; object-fit: cover;">
+
+                    <!-- Details -->
+                    <div class="flex-grow-1 text-center text-sm-start">
+                        <h5 class="card-title mb-1">{{ $menu->name }}</h5>
+                        <p class="card-text text-muted mb-2">
+                            <i class="fas fa-wave-square me-1"></i> Scans: {{ $menu->visit_count }}
+                            <span class="mx-2 d-none d-sm-inline">|</span> <!-- Hide separator on small screens -->
+                            <br class="d-sm-none"> <!-- Line break for small screens -->
+                            <i class="fas fa-calendar-alt me-1"></i> Created: {{ $menu->created_at->format('Y-m-d') }}
+                        </p>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="btn-group">
+                        <a href="{{ route('menu.details', ['id' => $menu->id]) }}" class="btn btn-outline-primary">
+                            <i class="fas fa-file-alt"></i>
+                        </a>
+                        <a href="{{ route('qr.form', ['url' => $menu->id]) }}" class="btn btn-outline-secondary">
                             <i class="fas fa-qrcode"></i>
                         </a>
-                    <a href="{{route('customer_menu',['menuId' =>  $menu->id])}}" target="blank" class="btn btn-outline-secondary"><i class="fas fa-eye"></i></a href="">
-                    <a href="{{route('edit_menu.index',['id' =>  $menu->id])}}" class="btn btn-outline-secondary"><i class="fas fa-pen"></i></a href="">
-                    <button  class="btn btn-outline-danger  delete-menu-btn" data-id="{{ $menu->id }}"
-                        type="button" data-coreui-toggle="modal"data-coreui-target="#deleteMenuModal"><i class="fas fa-trash-alt"></i></button>
-
-                  </div>
+                        <a href="{{ route('customer_menu', ['menuId' => $menu->id]) }}" target="blank" class="btn btn-outline-secondary">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="{{ route('edit_menu.index', ['id' => $menu->id]) }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <button class="btn btn-outline-danger delete-menu-btn" data-id="{{ $menu->id }}" type="button"
+                                data-coreui-toggle="modal" data-coreui-target="#deleteMenuModal">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
                 </div>
-              </div>
+            </div>
+
             @endforeach
             @else
             <div><h2>There is no menu add to see your menu</h2></div>

@@ -16,14 +16,8 @@
     <title>Quick Menu</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<!--
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-TemplateMo 570 Chain App Dev
-
-https://templatemo.com/tm-570-chain-app-dev
-
--->
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -31,25 +25,100 @@ https://templatemo.com/tm-570-chain-app-dev
     <link rel="stylesheet" href="{{asset('assets')}}/css/animated.css">
     <link rel="stylesheet" href="{{asset('assets')}}/css/owl.css">
     <style>
+/* General Nav Styles */
 
-        .logo{
-            width: 10rem;
-            margin-left: 5px;
-        }
-        .main-banner:after {
-            content: '';
-            background-image: url('{{asset('assets')}}/images/brand/slider-left-dec.png');
-            background-repeat: no-repeat;
-            background-size: contain;
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
 
-        .services:after {
+@media (max-width: 767px) {
+
+
+  .header-area .main-nav .nav {
+    float: none;
+    width: 100%;
+    height: 100vh;
+    display: none; /* Hidden by default */
+    opacity: 0; /* Start invisible */
+    transform: translateY(-20px); /* Slide in from above */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+    margin-left: 0px;
+  }
+
+  .header-area .main-nav .nav.show {
+    background: #fff;
+    display: block;
+    position: absolute;
+    top: 60px; /* Adjust based on header height */
+        right: 10px;
+        z-index: 1000;
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Reset position */
+  }
+  .header-area .main-nav .nav.show li a {
+    border: none !important;
+  }
+  .background-header  .nav.show a.active::after{
+    background-color: transparent !important;
+  }
+
+  .header-area .main-nav .nav li {
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #e7e7e7;
+    text-align: center;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .header-area .main-nav .nav li a {
+    height: 50px !important;
+    line-height: 50px !important;
+    padding: 0px !important;
+    border: none !important;
+    background: #f7f7f7 !important;
+    color: #191a20 !important;
+    transition: all 0.2s ease-in-out; /* Add hover effect */
+  }
+
+  .header-area .main-nav .nav li a:hover {
+    background: #eee !important;
+    color: #4b8ef1 !important;
+  }
+
+  .header-area .menu-trigger {
+    display: block !important;
+    cursor: pointer;
+  }
+  .right-image{
+    display: none !important;
+  }
+}
+.nav-link-custom:hover{
+    color: #191a20!important;
+}
+.background-header .main-nav .nav .nav-link-custom:hover a {
+    color: #010407;
+}
+.header-area .main-nav .nav .nav-link-custom:hover a, .header-area .main-nav .nav .nav-link-custom a.active{
+    color: #010407!important;
+}
+
+.logo{
+    width: 10rem;
+    margin-left: 5px;
+}
+.main-banner:after {
+    content: '';
+    background-image: url('{{asset('assets')}}/images/brand/slider-left-dec.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.services:after {
   content: '';
   background-image: url('{{asset('assets')}}/images/services-left-dec.png');
   background-repeat: no-repeat;
@@ -111,18 +180,7 @@ https://templatemo.com/tm-570-chain-app-dev
   background-repeat: no-repeat;
   background-size: cover;
 }
-.about-us:after {
-  background-image: url('{{asset("assets")}}/images/brand/about-bg.jpg');
-  width: 777px;
-  height: 1132px;
-  content: '';
-  position: absolute;
-  background-repeat: no-repeat;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 0;
-}
+
 
 .the-clients .nacc .thumb .client-content {
   padding: 60px 30px;
@@ -229,12 +287,12 @@ z-index: 9999; /* Ensure it appears above other elements */
                             <li class="scroll-to-section"><a href="#pricing">Pricing</a></li>
 
                             @if (auth()->check())
-
-                                <div class="nav-item dropdown" style="">
-                                    <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <li class="nav-link-custom">
+                                <div class="nav-item dropdown" style="color:#191a20">
+                                    <a class="nav-link dropdown-toggle" style="color:#191a20" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="fa fa-user"></i> {{ auth()->user()->name }}
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                                    <ul class="dropdown-menu dropdown-menu-end" style="color:#191a20" aria-labelledby="userMenu">
                                         @if(auth()->user()?->subscriptions)
                                             <li>
                                                 <a class="dropdown-item" href="/dashboard">
@@ -242,13 +300,15 @@ z-index: 9999; /* Ensure it appears above other elements */
                                                 </a>
                                             </li>
                                         @endif
-                                        <li>
+                                        <li class="logout">
                                             @livewire('logout-button')
                                         </li>
                                     </ul>
                                 </div>
+                            </li>
                             @else
                                 <li>
+
                                     <div class="gradient-button">
                                         <a id="modal_trigger" href="/register">
                                             <i class="fa fa-sign-in-alt"></i> Sign Up Now
@@ -270,9 +330,12 @@ z-index: 9999; /* Ensure it appears above other elements */
 
 
 
-</div>
+
+
 
 <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="menu-overlay"></div>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -325,9 +388,7 @@ z-index: 9999; /* Ensure it appears above other elements */
                     <div class="icon"></div>
                     <h4>Easy Maintenance</h4>
                     <p>Effortlessly update and manage your digital menus anytime, anywhere.</p>
-                    <div class="text-button">
-                        <a href="#">Learn More <i class="fa fa-arrow-right"></i></a>
-                    </div>
+
                 </div>
             </div>
             <div class="col-lg-3">
@@ -335,9 +396,7 @@ z-index: 9999; /* Ensure it appears above other elements */
                     <div class="icon"></div>
                     <h4>Rapid Order Processing</h4>
                     <p>Enable quick and accurate order placement directly through the menu system.</p>
-                    <div class="text-button">
-                        <a href="#">Learn More <i class="fa fa-arrow-right"></i></a>
-                    </div>
+
                 </div>
             </div>
             <div class="col-lg-3">
@@ -345,9 +404,7 @@ z-index: 9999; /* Ensure it appears above other elements */
                     <div class="icon"></div>
                     <h4>Customizable Menus</h4>
                     <p>Tailor your menu to reflect your brand and meet customer preferences.</p>
-                    <div class="text-button">
-                        <a href="#">Learn More <i class="fa fa-arrow-right"></i></a>
-                    </div>
+
                 </div>
             </div>
             <div class="col-lg-3">
@@ -355,9 +412,7 @@ z-index: 9999; /* Ensure it appears above other elements */
                     <div class="icon"></div>
                     <h4>24/7 Support</h4>
                     <p>Our team is here to assist you with any issues, anytime.</p>
-                    <div class="text-button">
-                        <a href="#">Learn More <i class="fa fa-arrow-right"></i></a>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -401,15 +456,15 @@ z-index: 9999; /* Ensure it appears above other elements */
                     <div class="col-lg-12">
                         <p>Take the first step towards redefining your restaurant experience with our innovative solution.</p>
                         <div class="gradient-button">
-                            <a href="#">Start Your Free Trial</a>
+                            <a href="#pricing">Subscribe Now</a>
                         </div>
-                        <span>*No Credit Card Required</span>
+
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="right-image">
-                    <img src="{{asset('assets')}}/images/brand/about-right-dec.png" alt="About Quick Menu">
+                    <img  src="{{asset('assets')}}/images/brand/about-right-dec.png" alt="About Quick Menu">
                 </div>
             </div>
         </div>
@@ -417,246 +472,106 @@ z-index: 9999; /* Ensure it appears above other elements */
 </div>
 
 
-<div id="clients" class="the-clients">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-          <div class="section-heading">
-            <h4>What Our <em>Clients Say</em> About Our Service</h4>
-            <img src="{{asset('assets')}}/images/brand/heading-line-dec.png" alt="">
-            <p>Our clients from hotels, restaurants, and coffee shops share their experiences with our solutions. Check out their thoughts below.</p>
+<div id="testimonials" class="testimonial-section py-5  z-3">
+    <div class="container w-100">
+      <div class="text-center mb-4">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-description">Discover the experiences shared by our clients from hotels, restaurants, and coffee shops.</p>
+      </div>
+      <div class="testimonial-slider">
+        <div class="testimonial-card">
+          <div class="card-header">
+            <img class="client-photo" src="https://www.findtherightclick.com/wp-content/uploads/2017/07/Matt-T-Testimonial-pic.jpg" alt="John Smith">
+            <div class="client-info">
+              <h4 class="client-name">John Smith</h4>
+              <span class="client-role">Hotel Manager</span>
+              <span class="testimonial-date">15 December 2024</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="testimonial-text">“The services provided by this app have significantly improved our hotel operations. It's user-friendly and efficient!”</p>
+          </div>
+          <div class="card-footer">
+            <div class="rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <span>5.0</span>
+            </div>
           </div>
         </div>
-        <div class="col-lg-12">
-          <div class="naccs">
-            <div class="grid">
-              <div class="row">
-                <div class="col-lg-7 align-self-center">
-                  <div class="menu">
-                    <div class="first-thumb active">
-                      <div class="thumb">
-                        <div class="row">
-                          <div class="col-lg-4 col-sm-4 col-12">
-                            <h4>John Smith</h4>
-                            <span class="date">15 December 2024</span>
-                          </div>
-                          <div class="col-lg-4 col-sm-4 d-none d-sm-block">
-                            <span class="category">Hotel Manager</span>
-                          </div>
-                          <div class="col-lg-4 col-sm-4 col-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="rating">5.0</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="thumb">
-                        <div class="row">
-                          <div class="col-lg-4 col-sm-4 col-12">
-                            <h4>Sarah Brown</h4>
-                            <span class="date">10 December 2024</span>
-                          </div>
-                          <div class="col-lg-4 col-sm-4 d-none d-sm-block">
-                            <span class="category">Coffee Shop Owner</span>
-                          </div>
-                          <div class="col-lg-4 col-sm-4 col-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half"></i>
-                            <span class="rating">4.8</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="thumb">
-                        <div class="row">
-                          <div class="col-lg-4 col-sm-4 col-12">
-                            <h4>Michael Johnson</h4>
-                            <span class="date">8 December 2024</span>
-                          </div>
-                          <div class="col-lg-4 col-sm-4 d-none d-sm-block">
-                            <span class="category">Restaurant Manager</span>
-                          </div>
-                          <div class="col-lg-4 col-sm-4 col-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="rating">5.0</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="thumb">
-                        <div class="row">
-                          <div class="col-lg-4 col-sm-4 col-12">
-                            <h4>Emily Davis</h4>
-                            <span class="date">5 December 2024</span>
-                          </div>
-                          <div class="col-lg-4 col-sm-4 d-none d-sm-block">
-                            <span class="category">Hotel Receptionist</span>
-                          </div>
-                          <div class="col-lg-4 col-sm-4 col-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half"></i>
-                            <span class="rating">4.5</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="last-thumb">
-                      <div class="thumb">
-                        <div class="row">
-                          <div class="col-lg-4 col-sm-4 col-12">
-                            <h4>James Wilson</h4>
-                            <span class="date">1 December 2024</span>
-                          </div>
-                          <div class="col-lg-4 col-sm-4 d-none d-sm-block">
-                            <span class="category">Coffee Shop Manager</span>
-                          </div>
-                          <div class="col-lg-4 col-sm-4 col-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <span class="rating">4.9</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-5">
-                  <ul class="nacc">
-                    <li class="active">
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-12">
-                              <div class="client-content">
-                                <img src="{{asset('assets')}}/images/brand/quote.png" alt="">
-                                <p>“John, The services provided by this app have significantly improved our hotel operations. It's user-friendly and efficient!”</p>
-                              </div>
-                              <div class="down-content">
-                                <img src="https://www.findtherightclick.com/wp-content/uploads/2017/07/Matt-T-Testimonial-pic.jpg" alt="">
-                                <div class="right-content">
-                                  <h4>John Smith</h4>
-                                  <span>Hotel Manager</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-12">
-                              <div class="client-content">
-                                <img src="{{asset('assets')}}/images/brand/quote.png" alt="">
-                                <p>“Sarah, Our coffee shop has benefited immensely from the easy-to-use features. Highly recommended!”</p>
-                              </div>
-                              <div class="down-content">
-                                <img src="{{asset('assets')}}/images/brand/client-image.jpg" alt="">
-                                <div class="right-content">
-                                  <h4>Sarah Brown</h4>
-                                  <span>Coffee Shop Owner</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                        <div>
-                          <div class="thumb">
-                            <div class="row">
-                              <div class="col-lg-12">
-                                <div class="client-content">
-                                  <img src="{{asset('assets')}}/images/brand/quote.png" alt="">
-                                  <p>“Sarah, Our coffee shop has benefited immensely from the easy-to-use features. Highly recommended!”</p>
-                                </div>
-                                <div class="down-content">
-                                  <img src="{{asset('assets')}}/images/brand/client-image.jpg" alt="">
-                                  <div class="right-content">
-                                    <h4>Sarah Brown</h4>
-                                    <span>Coffee Shop Owner</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div>
-                          <div class="thumb">
-                            <div class="row">
-                              <div class="col-lg-12">
-                                <div class="client-content">
-                                  <img src="{{asset('assets')}}/images/brand/quote.png" alt="">
-                                  <p>“Sarah, Our coffee shop has benefited immensely from the easy-to-use features. Highly recommended!”</p>
-                                </div>
-                                <div class="down-content">
-                                  <img src="{{asset('assets')}}/images/brand/client-image.jpg" alt="">
-                                  <div class="right-content">
-                                    <h4>Sarah Brown</h4>
-                                    <span>Coffee Shop Owner</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div>
-                          <div class="thumb">
-                            <div class="row">
-                              <div class="col-lg-12">
-                                <div class="client-content">
-                                  <img src="{{asset('assets')}}/images/brand/quote.png" alt="">
-                                  <p>“Sarah, Our coffee shop has benefited immensely from the easy-to-use features. Highly recommended!”</p>
-                                </div>
-                                <div class="down-content">
-                                  <img src="{{asset('assets')}}/images/brand/client-image.jpg" alt="">
-                                  <div class="right-content">
-                                    <h4>Sarah Brown</h4>
-                                    <span>Coffee Shop Owner</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    <!-- Add more client feedbacks as needed -->
-                  </ul>
-                </div>
-              </div>
+
+        <div class="testimonial-card">
+          <div class="card-header">
+            <img class="client-photo" src="{{asset('assets')}}/images/brand/client-image.jpg" alt="Sarah Brown">
+            <div class="client-info">
+              <h4 class="client-name">Sarah Brown</h4>
+              <span class="client-role">Coffee Shop Owner</span>
+              <span class="testimonial-date">10 December 2024</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="testimonial-text">“Our coffee shop has benefited immensely from the easy-to-use features. Highly recommended!”</p>
+          </div>
+          <div class="card-footer">
+            <div class="rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-half"></i>
+              <span>4.8</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="card-header">
+            <img class="client-photo" src="https://via.placeholder.com/100" alt="Michael Johnson">
+            <div class="client-info">
+              <h4 class="client-name">Michael Johnson</h4>
+              <span class="client-role">Restaurant Manager</span>
+              <span class="testimonial-date">8 December 2024</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="testimonial-text">“The app has transformed how we manage our restaurant. It’s reliable and easy to integrate into our workflow.”</p>
+          </div>
+          <div class="card-footer">
+            <div class="rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <span>5.0</span>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="section-heading">
+            <h4>How This <em> Work?</em></h4>
+            <img src="{{asset('assets')}}/images/brand/heading-line-dec.png" alt="">
+
+            <p>Watch the video below to understand how our service operates.</p>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="video-wrapper text-center">
+            <iframe width="100%" height="500" src="https://www.youtube.com/embed/F9HjkWyh7Rw?si=tTRNR-hTvCr7SQB2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
   <div id="pricing" class="pricing-tables">
@@ -795,174 +710,28 @@ z-index: 9999; /* Ensure it appears above other elements */
     </script>
       @endif
 
-  <!-- Scripts -->
-  <script>
-    (function () {
-    "use strict";
 
-    // Header Type = Fixed
-    window.addEventListener("scroll", function () {
-      var scroll = window.scrollY;
-      var box = document.querySelector(".header-text").offsetHeight;
-      var header = document.querySelector("header").offsetHeight;
-
-      if (scroll >= box - header) {
-        document.querySelector("header").classList.add("background-header");
-      } else {
-        document.querySelector("header").classList.remove("background-header");
-      }
-    });
-
-    // Owl Carousel Replacement (Simple implementation example)
-    var loopElements = document.querySelectorAll(".loop .item");
-    var currentLoopIndex = 0;
-
-    function loopCarousel() {
-      loopElements.forEach((el, index) => {
-        el.style.display = index === currentLoopIndex ? "block" : "none";
-      });
-      currentLoopIndex = (currentLoopIndex + 1) % loopElements.length;
-    }
-    setInterval(loopCarousel, 3000);
-
-    // Modal trigger
-    var modalTrigger = document.getElementById("modal_trigger");
-    if (modalTrigger) {
-      modalTrigger.addEventListener("click", function () {
-        document.querySelector(".modal").style.display = "block";
-      });
-    }
-
-    document.querySelectorAll(".modal_close").forEach(function (closeButton) {
-      closeButton.addEventListener("click", function () {
-        document.querySelector(".modal").style.display = "none";
-      });
-    });
-
-    // Login/Register Form Toggle
-    document.getElementById("login_form")?.addEventListener("click", function (e) {
-      e.preventDefault();
-      document.querySelector(".social_login").style.display = "none";
-      document.querySelector(".user_login").style.display = "block";
-    });
-
-    document.getElementById("register_form")?.addEventListener("click", function (e) {
-      e.preventDefault();
-      document.querySelector(".social_login").style.display = "none";
-      document.querySelector(".user_register").style.display = "block";
-      document.querySelector(".header_title").innerText = "Register";
-    });
-
-    document.querySelectorAll(".back_btn").forEach(function (backBtn) {
-      backBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        document.querySelector(".user_login").style.display = "none";
-        document.querySelector(".user_register").style.display = "none";
-        document.querySelector(".social_login").style.display = "block";
-        document.querySelector(".header_title").innerText = "Login";
-      });
-    });
-
-    // Accordion
-    document.addEventListener("click", function (e) {
-      if (e.target.matches(".naccs .menu div")) {
-        var numberIndex = Array.from(e.target.parentElement.children).indexOf(e.target);
-
-        document.querySelectorAll(".naccs .menu div").forEach(function (el) {
-          el.classList.remove("active");
-        });
-        document.querySelectorAll(".naccs ul li").forEach(function (el) {
-          el.classList.remove("active");
-        });
-
-        e.target.classList.add("active");
-        var activeItem = document.querySelector(`.naccs ul li:nth-child(${numberIndex + 1})`);
-        activeItem.classList.add("active");
-
-        var listItemHeight = activeItem.offsetHeight;
-        document.querySelector(".naccs ul").style.height = listItemHeight + "px";
-      }
-    });
-
-    // Menu Dropdown Toggle
-    var menuTrigger = document.querySelector(".menu-trigger");
-    if (menuTrigger) {
-      menuTrigger.addEventListener("click", function () {
-        this.classList.toggle("active");
-        document.querySelector(".header-area .nav").classList.toggle("show");
-      });
-    }
-
-    // Smooth Scrolling and Active Link Highlight
-    document.querySelectorAll('.scroll-to-section a[href^="#"]').forEach(function (anchor) {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        document.querySelectorAll(".scroll-to-section a").forEach(function (link) {
-          link.classList.remove("active");
-        });
-        this.classList.add("active");
-
-        var target = document.querySelector(this.getAttribute("href"));
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop + 1,
-            behavior: "smooth",
-          });
-        }
-      });
-    });
-
-    function onScroll() {
-      var scrollPos = window.scrollY;
-      document.querySelectorAll(".nav a").forEach(function (link) {
-        var refElement = document.querySelector(link.getAttribute("href"));
-        if (refElement && refElement.offsetTop <= scrollPos && refElement.offsetTop + refElement.offsetHeight > scrollPos) {
-          document.querySelectorAll(".nav ul li a").forEach(function (el) {
-            el.classList.remove("active");
-          });
-          link.classList.add("active");
-        } else {
-          link.classList.remove("active");
-        }
-      });
-    }
-    document.addEventListener("scroll", onScroll);
-
-    // Page Loading Animation
-    window.addEventListener("load", function () {
-      document.getElementById("js-preloader").classList.add("loaded");
-    });
-
-    // Window Resize Mobile Menu Fix
-    function mobileNav() {
-      var width = window.innerWidth;
-      document.querySelectorAll(".submenu").forEach(function (submenu) {
-        submenu.addEventListener("click", function () {
-          if (width < 767) {
-            document.querySelectorAll(".submenu ul").forEach(function (el) {
-              el.classList.remove("active");
-            });
-            submenu.querySelector("ul").classList.toggle("active");
-          }
-        });
-      });
-    }
-    mobileNav();
-  })();
-
-  </script>
   <script
   src="https://code.jquery.com/jquery-3.7.1.js"
   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
   crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+ <script src="{{asset('assets/vendors')}}/landing-js/custom.js"></script>
+  <script src="{{asset('assets/vendors')}}/landing-js/animation.js"></script>
+  <script src="{{asset('assets/vendors')}}/landing-js/imagesloaded.js"></script>
+  <script src="{{asset('assets/vendors')}}/landing-js/popup.js"></script>
+  <script src="{{asset('assets/vendors')}}/landing-js/owl-carousel.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>  <script src="{{asset('vendors')}}/landing-js/owl-carousel.js"></script>
-  <script src="{{asset('vendors')}}/landing-js/custom.js"></script>
-  <script src="{{asset('vendors')}}/landing-js/animation.js"></script>
-  <script src="{{asset('vendors')}}/landing-js/imagesloaded.js"></script>
+<script>
 
-  <script src="{{asset('vendors')}}/landing-js/popup.js"></script>
+
+</script>
+  <!-- Scripts -->
+  <script>
+
+  </script>
+
+
 
 </body>
 </html>

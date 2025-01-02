@@ -10,7 +10,7 @@
     <meta name="description" content="CoreUI - Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,SCSS,HTML,RWD,Dashboard">
-    <title>Users</title>
+    <title>Contact Messages</title>
 
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
@@ -46,6 +46,7 @@
 
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1000">
+                    <div class="table-responsive">
                     <table class="table table-striped border datatable">
                       <thead>
                         <tr>
@@ -68,6 +69,7 @@
                       </tbody>
                     </table>
                   </div>
+                </div>
                 </div>
 
             </div>

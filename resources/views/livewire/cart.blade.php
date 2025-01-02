@@ -8,7 +8,7 @@
 
     <!-- Cart Container -->
     @if($isCartVisible && count($cartItems) > 0)
-        <div class="cart bg-light p-3 position-fixed bottom-0 w-100">
+        <div class="cart bg-light p-3 position-fixed bottom-0 w-100" style="max-height: 100vh; overflow-y: auto;">
             <div class="d-flex justify-content-between align-items-center my-2">
                 <h5>Cart</h5>
                 <!-- Close Button (X) -->
@@ -17,16 +17,19 @@
 
             <ul class="list-group mb-3">
                 @foreach($cartItems as $item)
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <!-- Item Info and Quantity Control -->
-                    <div class="d-flex flex-grow-1 align-items-center justify-content-between">
-                        <!-- Item Name -->
-                        <strong class="text-truncate" style="font-size: 18px; max-width: 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                            {{ $item['name'] }}
-                        </strong>
+                <li class="list-group-item">
+                    <!-- Item Name -->
+                    <div class="text-truncate" style="font-size: 18px; font-weight: bold; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        {{ $item['name'] }}
+                    </div>
+
+                    <!-- Price, Quantity Control, and Remove -->
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <!-- Price -->
+                        <span class="text-success" style="font-size: 18px; font-weight: 500;">${{ $item['price'] * $item['quantity'] }}</span>
 
                         <!-- Quantity Control -->
-                        <div class="d-flex align-items-center" style="margin-right:5px ">
+                        <div class="d-flex align-items-center">
                             <button class="btn btn-sm btn-custom me-1" wire:click="decrementQuantity({{ $item['id'] }})">
                                 <i class="fas fa-minus"></i>
                             </button>
@@ -37,20 +40,15 @@
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
-                    </div>
 
-                    <!-- Price and Remove Button -->
-                    <div class="d-flex align-items-center">
-                        <span class="text-success me-3" style="font-size: 18px; font-weight: 500;">${{ $item['price'] * $item['quantity'] }}</span>
+                        <!-- Remove Button -->
                         <button class="btn btn-danger btn-sm" wire:click="removeItem({{ $item['id'] }})">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
                 </li>
-
                 @endforeach
             </ul>
-
 
             <div class="bg-light p-3 rounded">
                 <form wire:submit.prevent="checkout">
@@ -65,9 +63,9 @@
                                wire:model="name" placeholder="Enter your Name"  required>
                     </div>
                     <div class="mb-3">
-                        <label for="message" class="form-label fw-bold">Any Message With order! </label>
+                        <label for="message" class="form-label fw-bold">Any Message With order!</label>
                         <input type="text" id="message" class="form-control"
-                               wire:model="message" placeholder="Enter your message"  >
+                               wire:model="message" placeholder="Enter your message">
                     </div>
 
                     <button type="submit" class="btn btn-custom w-100 fw-bold">
@@ -75,11 +73,10 @@
                     </button>
                 </form>
             </div>
-
-
         </div>
     @endif
 </div>
+
 @script
 <script>
       $wire.on('TostOrderPlaced', (message) => {

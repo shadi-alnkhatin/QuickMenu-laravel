@@ -1,4 +1,4 @@
-<div class="container-fluid mb-3 py-2">
+<div class="container-fluid mb-3 py-2 position-sticky">
     <div class="row">
         <div class="col">
             <div class="d-flex justify-content-between">

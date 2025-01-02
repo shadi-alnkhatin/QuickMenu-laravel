@@ -12,33 +12,33 @@ class StaticsController extends Controller
 {
     public function getTotalProfits()
     {
-    Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe::setApiKey(env('STRIPE_SECRET'));
 
-    $payments =PaymentIntent::all(['limit' => 100]); // Fetch latest 100 payments
+        $payments =PaymentIntent::all(['limit' => 100]); // Fetch latest 100 payments
 
-    $totalProfit = 0;
-    foreach ($payments->data as $payment) {
-        if ($payment->status == 'succeeded') {
-            $totalProfit += $payment->amount_received / 100; // Convert from cents
+        $totalProfit = 0;
+        foreach ($payments->data as $payment) {
+            if ($payment->status == 'succeeded') {
+                $totalProfit += $payment->amount_received / 100; // Convert from cents
+            }
         }
-    }
 
-    return $totalProfit;
+        return $totalProfit;
     }
 
     public function getSubscribersCount()
-{
-    Stripe::setApiKey(env('STRIPE_SECRET'));
+    {
+         Stripe::setApiKey(env('STRIPE_SECRET'));
 
-    $subscriptions = Subscription::all(['limit' => 100]); // Adjust the limit as needed
+         $subscriptions = Subscription::all(['limit' => 100]);
 
-    $activeCount = 0;
-    foreach ($subscriptions->data as $subscription) {
-        if ($subscription->status == 'active') {
-            $activeCount++;
-        }
+         $activeCount = 0;
+         foreach ($subscriptions->data as $subscription) {
+             if ($subscription->status == 'active') {
+                 $activeCount++;
+             }
+         }
+
+         return $activeCount;
     }
-
-    return $activeCount;
-}
 }

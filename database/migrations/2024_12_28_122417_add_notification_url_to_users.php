@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
-           
+            $table->string('notification_url')->default(asset('storage/sounds/notification.mp3'));
         });
     }
 

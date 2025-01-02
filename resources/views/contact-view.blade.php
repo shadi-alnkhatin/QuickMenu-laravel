@@ -2,6 +2,7 @@
 @section('head')
     <base href="./">
     <meta charset="utf-8">
+    <title>Contact Admin</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="theme-color" content="#ffffff">
@@ -24,7 +25,7 @@
         }
 
         .contact-form {
-            width: 70%;
+
             margin: 20px auto;
             background: #fff;
             padding: 30px;
@@ -58,7 +59,7 @@
     </style>
 @endsection
 @section('content')
-<div class="contact-form">
+<div class="contact-form col-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 ">
     <h1>Contact With Admin</h1>
     <form action="{{route('contact.store')}}" method="POST">
         @csrf

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>CoreUI Bootstrap Admin Template</title>
+    <title>Dashboard</title>
 
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
@@ -90,7 +90,7 @@
                   <div class="card mb-4 text-white bg-primary-gradient">
                     <div class="card-body p-4 pb-0 d-flex flex-row justify-content-between ">
                         <div>
-                        <div class="fs-4 fw-semibold">33
+                        <div class="fs-4 fw-semibold">{{$totlMenuScans}}
                             {{-- <span class="fs-6 fw-normal">(-12.4%
                             <svg class="icon">
                               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>

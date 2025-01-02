@@ -25,7 +25,9 @@ class AdminController extends Controller
             ->where('created_at', '>=', now()->subWeek())
             ->sum('total_price');
 
-            return view('index', compact('totalProfits', 'totalMenus','totalOrders','lastWeekSales'));
+            $totlMenuScans= Menu::where('user_id', $userId)->sum('visit_count');
+
+            return view('index', compact('totalProfits', 'totalMenus','totalOrders','lastWeekSales','totlMenuScans'));
        }
        elseif( auth()->user()->isAdmin()){
             $statics= new StaticsController();
