@@ -1,4 +1,4 @@
-<div class="container-fluid mb-3 py-2 position-sticky">
+<div class="container-fluid mb-3 py-2 ">
     <div class="row">
         <div class="col">
             <div class="d-flex justify-content-between">
@@ -15,8 +15,8 @@
 
     </div>
 
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" data-bs-keyboard="false" data-bs-backdrop="false" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" data-bs-keyboard="false" data-bs-backdrop="true" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasExampleLabel">Categories</h5>
                     <button id="closeOffcanvas" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 

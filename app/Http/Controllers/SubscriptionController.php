@@ -8,8 +8,12 @@ use Illuminate\Http\Request;
 class SubscriptionController extends Controller
 {
     public function index(){
-        $subscriptions=Subscription::with('user')->get();
-        return view('subscriptions', compact('subscriptions'));
+        $subscriptions = Subscription::with('user')
+        ->whereHas('user', function ($query) {
+            $query->where('role', '!=', 'admin');
+        })
+        ->get();
+            return view('subscriptions', compact('subscriptions'));
     }
     public function updateStatus(Request $request, $id)
     {

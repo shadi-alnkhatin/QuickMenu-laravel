@@ -18,7 +18,7 @@
         </div>
         <div class="mb-3">
             <label for="UserPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="UserPassword" name="UserPassword" placeholder="Enter item price">
+            <input type="password" class="form-control" id="UserPassword" name="UserPassword" placeholder=" Password For User">
         </div>
 
         <button type="submit" class="btn btn-success text-light">Add</button>

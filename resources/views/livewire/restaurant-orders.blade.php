@@ -11,61 +11,64 @@
         </select>
     </form>
 
-    <!-- Orders Table -->
-    <div class="card mb-4">
-        <div class="card-header">Orders</div>
-        <div class="card-body">
-            @if(count($orders) == 0)
-                <p>No orders available for this menu.</p>
-            @else
-                <div class="tab-content rounded-bottom">
-                    <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1000">
-                        <!-- Add table-responsive wrapper here -->
-                        <div class="table-responsive">
-                            <table class="table table-striped border table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Table Number</th>
-                                        <th>Total Price</th>
-                                        <th>Status</th>
-                                        <th>Ordered At</th>
-                                        <th>Action</th>
+   <!-- Orders Table -->
+<div class="card mb-4">
+    <div class="card-header">Orders</div>
+    <div class="card-body">
+        @if(count($orders) == 0)
+            <p>No orders available for this menu.</p>
+        @else
+            <div class="tab-content rounded-bottom">
+                <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1000">
+                    <!-- Responsive Table -->
+                    <div class="table-responsive">
+                        <table class="table table-striped border table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Table Number</th>
+                                    <th>Total Price</th>
+                                    <th>Status</th>
+                                    <th>Ordered At</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($orders as $order)
+                                    <tr wire:key="order-{{ $order->id }}">
+                                        <td data-label="Table Number" class="text-center">{{ $order->table_number }}</td>
+                                        <td data-label="Total Price" class="text-center"><strong>${{ $order->total_price }}</strong></td>
+                                        <td data-label="Status" class="status">
+                                            <span class="badge {{ $order->status == 'active' ? 'bg-success' : 'bg-secondary' }} ">
+                                                {{ ucfirst($order->status) }}
+                                            </span>
+                                        </td>
+                                        <td data-label="Ordered At" class="ordered-at">{{ $order->created_at }}</td>
+                                        <td data-label="Action">
+                                            <select wire:change="updateStatus({{ $order->id }}, $event.target.value)"
+                                                    class="form-select">
+                                                <option value="active" {{ $order->status == 'active' ? 'selected' : '' }}>
+                                                    Active
+                                                </option>
+                                                <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>
+                                                    Completed
+                                                </option>
+                                            </select>
+                                            @livewire('order-details', ['orderId' => $order->id], key($order->id))
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($orders as $order)
-                                        <tr>
-                                            <td class="text-center">{{ $order->table_number }}</td>
-                                            <td class="text-center"><strong>${{ $order->total_price }}</strong></td>
-                                            <td>
-                                                <span class="badge
-                                                    {{ $order->status == 'active' ? 'bg-success' : 'bg-secondary' }}">
-                                                    {{ ucfirst($order->status) }}
-                                                </span>
-                                            </td>
-                                            <td>{{ $order->created_at }}</td>
-                                            <td>
-                                                <select wire:change="updateStatus({{ $order->id }}, $event.target.value)"
-                                                        class="form-select">
-                                                    <option value="active" {{ $order->status == 'active' ? 'selected' : '' }}>
-                                                        Active
-                                                    </option>
-                                                    <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>
-                                                        Completed
-                                                    </option>
-                                                </select>
-                                                @livewire('order-details', ['orderId' => $order->id], key($order->id))
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div> <!-- End table-responsive -->
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        {{ $orders->links('vendor.livewire.bootstrap') }} <!-- Livewire pagination links -->
                     </div>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
     </div>
+</div>
+
     <!-- Modal to see details -->
 
 </div>

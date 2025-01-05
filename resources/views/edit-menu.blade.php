@@ -6,16 +6,8 @@
     <link rel="stylesheet" href="{{asset('assets')}}/vendors/simplebar/css/simplebar.css">
 <!-- Main styles for this application-->
 <link href="{{asset('assets')}}/css/style.css" rel="stylesheet">
-<!-- We use those styles to show code examples, you should remove them in your application.-->
-<link href="{{asset('assets')}}/css/examples.css" rel="stylesheet">
-<script src="{{asset('assets')}}/js/config.js"></script>
-<script src="{{asset('assets')}}/js/color-modes.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Menu List</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="js/config.js"></script>
-    <script src="js/color-modes.js"></script>
-    <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -29,6 +21,7 @@
     <br>
     <h1>Edit Menu</h1>
     <br>
+    {{-- Form for Editing Existing menu  --}}
     <form action="{{ route('menu.update', $menu->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf

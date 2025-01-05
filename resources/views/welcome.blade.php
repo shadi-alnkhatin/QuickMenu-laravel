@@ -2,18 +2,33 @@
 <html lang="en">
 
   <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <link rel="icon" type="image/png" href="{{asset('assets/icon.png')}}">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Quick Menu - Streamline your dining experience with an intuitive, fast, and mobile-friendly menu system.">
+    <meta name="keywords" content="Quick Menu, Online Menu, Restaurant Menu, QR Code Menu , Digital Menu, order prosess, order now , simple menu ,">
+    <meta name="author" content="Quick Menu">
+    <link rel="canonical" href="https://quick-menu.infy.uk">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Quick Menu - Fast and Mobile-Friendly Menus">
+    <meta property="og:description" content="Streamline your dining experience with Quick Menu.">
+    <meta property="og:url" content="https://quick-menu.infy.uk">
+    <meta property="og:type" content="website">
+
+    <!-- Preconnect for Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" />
-    <title>Quick Menu</title>
+
+    <!-- Toastr and jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
+
+    <title>Quick Menu </title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -25,7 +40,6 @@
     <link rel="stylesheet" href="{{asset('assets')}}/css/animated.css">
     <link rel="stylesheet" href="{{asset('assets')}}/css/owl.css">
     <style>
-/* General Nav Styles */
 
 
 @media (max-width: 767px) {
@@ -82,7 +96,9 @@
     background: #eee !important;
     color: #4b8ef1 !important;
   }
-
+  .gradient-button {
+    display: block !important;
+  }
   .header-area .menu-trigger {
     display: block !important;
     cursor: pointer;
@@ -275,7 +291,7 @@ z-index: 9999; /* Ensure it appears above other elements */
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">
+                        <a href="{{route('home')}}" class="logo">
                             <img class="mx-5" src="{{asset('assets')}}/images/brand/logo.png" alt="Chain App Dev">
                         </a>
                         <!-- ***** Logo End ***** -->
@@ -309,11 +325,10 @@ z-index: 9999; /* Ensure it appears above other elements */
                             @else
                                 <li>
 
-                                    <div class="gradient-button">
-                                        <a id="modal_trigger" href="/register">
+
+                                        <a class="gradient-button " href="/register">
                                             <i class="fa fa-sign-in-alt"></i> Sign Up Now
                                         </a>
-                                    </div>
                                 </li>
 
                             @endif
@@ -529,7 +544,7 @@ z-index: 9999; /* Ensure it appears above other elements */
 
         <div class="testimonial-card">
           <div class="card-header">
-            <img class="client-photo" src="https://via.placeholder.com/100" alt="Michael Johnson">
+            <img class="client-photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTuvr0Qx7UlGx5-rOR2nN2XO1JwBFk6gc2fA&s" alt="Michael Johnson">
             <div class="client-info">
               <h4 class="client-name">Michael Johnson</h4>
               <span class="client-role">Restaurant Manager</span>
@@ -565,7 +580,7 @@ z-index: 9999; /* Ensure it appears above other elements */
             <p>Watch the video below to understand how our service operates.</p>
           </div>
         </div>
-        <div class="col-lg-12">
+        <div class="col-lg-12 mt-3">
           <div class="video-wrapper text-center">
             <iframe width="100%" height="500" src="https://www.youtube.com/embed/F9HjkWyh7Rw?si=tTRNR-hTvCr7SQB2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>          </div>
         </div>
@@ -667,15 +682,15 @@ z-index: 9999; /* Ensure it appears above other elements */
             <p><a href="mailto:shadisaad911@gmail.com">shadisaad911@gmail.com</a></p>
           </div>
         </div>
-        <div class="col-lg-6 ">
+        <div class="col-lg-6 " >
           <div class="footer-widget  mx-5">
             <h4>About Us</h4>
             <ul>
               <li><a href="#">Home</a></li>
-              <li><a href="services">Services</a></li>
-              <li><a href="about">About</a></li>
-              <li><a href="clients">Testimonials</a></li>
-              <li><a href="pricing">Pricing</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#pricing">Pricing</a></li>
             </ul>
 
           </div>
@@ -687,7 +702,9 @@ z-index: 9999; /* Ensure it appears above other elements */
             <div class="logo">
               <img src="{{asset('assets')}}/images/brand/logo.png" alt="">
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+            <p>Our Quick Menu System simplifies your ordering process with digital menus and QR code integration for seamless customer experiences.
+
+            </p>
           </div>
         </div>
         <div class="col-lg-12">

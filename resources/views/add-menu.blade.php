@@ -51,7 +51,7 @@
 
         <!-- Phone input -->
         <div data-mdb-input-init class="form-outline mb-4">
-          <input type="number" id="form6Example6" class="form-control" name="phone_number" value="{{old('phone_number')}}"/>
+          <input type="tel" id="form6Example6" class="form-control" name="phone_number" value="{{old('phone_number')}}"/>
           <label class="form-label" for="form6Example6">Phone</label>
           @error('phone_number')
             <small class="text-danger">{{ $message }}</small>

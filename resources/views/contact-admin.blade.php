@@ -5,24 +5,10 @@
 
  <base href="./">
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
-    <meta name="keyword" content="Bootstrap,Admin,Template,SCSS,HTML,RWD,Dashboard">
     <title>Contact Messages</title>
-
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <!-- Vendors styles-->
     <link rel="stylesheet" href="{{asset('assets')}}/vendors/simplebar/css/simplebar.css">
-    <!-- Main styles for this application-->
     <link href="{{asset('assets')}}/css/style.css" rel="stylesheet">
-    <!-- We use those styles to show code examples, you should remove them in your application.-->
-    <link href="{{asset('assets')}}/css/examples.css" rel="stylesheet">
-    <script src="{{asset('assets')}}/js/config.js"></script>
-    <script src="{{asset('assets')}}/js/color-modes.js"></script>
     <link href="{{asset('assets')}}/vendors/datatables.net-bs5/css/dataTables.bootstrap5.css" rel="stylesheet">
  @endsection
 @section('content')

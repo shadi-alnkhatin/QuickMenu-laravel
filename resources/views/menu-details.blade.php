@@ -15,10 +15,6 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" />
   <!-- We use those styles to show code examples, you should remove them in your application.-->
-  <link href="{{asset('assets')}}/css/examples.css" rel="stylesheet">
-  <script src="{{asset('assets')}}/js/config.js"></script>
-  <script src="{{asset('assets')}}/js/color-modes.js"></script>
-  <link href="{{asset('assets')}}/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu Details</title>
 
@@ -194,7 +190,6 @@
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.5.0/dist/js/coreui.bundle.min.js"></script>
 <script src="{{asset('assets')}}/js/menu-details.js"></script>
 
 

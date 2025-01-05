@@ -17,7 +17,7 @@ class QrCodeController extends Controller
                 hexdec(substr($request->input('color', '#000000'), 3, 2)), // Green
                 hexdec(substr($request->input('color', '#000000'), 5, 2))  // Blue
             )
-            ->generate("http://127.0.0.1:8000/customer-menu/".$url);
+            ->generate("https://quick-menu.infy.uk/customer-menu/".$url);
 
                 $menuid=$url;
         // Embed text or other customizations (if needed)
@@ -39,12 +39,12 @@ class QrCodeController extends Controller
                 hexdec(substr($request->input('color', '#000000'), 3, 2)), // Green
                 hexdec(substr($request->input('color', '#000000'), 5, 2))  // Blue
             )
-            ->generate("http://127.0.0.1:8000/customer-menu/".$url);
+            ->generate("https://quick-menu.infy.uk/customer-menu/".$url);
 
 
         // Embed text or other customizations (if needed)
         return $qrCode;
-   
+
 
     }
 

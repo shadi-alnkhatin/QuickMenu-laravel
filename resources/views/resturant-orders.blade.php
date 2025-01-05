@@ -3,28 +3,14 @@
  @section('head')
 
  <base href="./">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
-    <meta name="keyword" content="Bootstrap,Admin,Template,SCSS,HTML,RWD,Dashboard">
     <title>Orders</title>
     @livewireStyles
-
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
     <!-- Vendors styles-->
     <link rel="stylesheet" href="{{asset('assets')}}/vendors/simplebar/css/simplebar.css">
-    <!-- Main styles for this application-->
     <link href="{{asset('assets')}}/css/style.css" rel="stylesheet">
-    <!-- We use those styles to show code examples, you should remove them in your application.-->
-    <link href="{{asset('assets')}}/css/examples.css" rel="stylesheet">
-    <script src="{{asset('assets')}}/js/config.js"></script>
-    <script src="{{asset('assets')}}/js/color-modes.js"></script>
-    <link href="{{asset('assets')}}/vendors/datatables.net-bs5/css/dataTables.bootstrap5.css" rel="stylesheet">
-    <style>
+
+   <style>
         /* Modal Style */
 .order-details.modal {
     display: block; /* Make sure it's visible */
@@ -88,6 +74,86 @@
 .modal-body p {
     margin: 5px 0;
 }
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 1em;
+
+  }
+  .status ,.ordered-at{
+    text-align: center;
+  }
+
+  table td::before {
+
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
 
     </style>
  @endsection
@@ -108,9 +174,7 @@
 
     </div>
 </div>
-   {{-- @include('user-crud-modals') --}}
-
-   <script>
+<script>
     if (Notification.permission !== 'granted') {
         Notification.requestPermission().then(function(permission) {
             if (permission === 'granted') {
@@ -120,13 +184,7 @@
     }
 </script>
 
-    <!-- CoreUI and necessary plugins-->
-    <script src="{{asset('assets')}}/vendors/@coreui/coreui-pro/js/coreui.bundle.min.js"></script>
-    <script src="{{asset('assets')}}/vendors/simplebar/js/simplebar.min.js"></script>
-    <script src="{{asset('assets')}}/vendors/i18next/js/i18next.min.js"></script>
-    <script src="{{asset('assets')}}/vendors/i18next-http-backend/js/i18nextHttpBackend.js"></script>
-    <script src="{{asset('assets')}}/vendors/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.js"></script>
-    <script src="{{asset('assets')}}/js/i18next.js"></script>
+
     <script>
       const header = document.querySelector('header.header');
 
@@ -140,11 +198,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Plugins and scripts required by this view-->
-    <script src="{{asset('assets')}}/vendors/jquery/js/jquery.min.js"></script>
-<script src="{{asset('assets')}}/vendors/datatables.net/js/dataTables.min.js"></script>
-<script src="{{asset('assets')}}/vendors/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-<script src="{{asset('assets')}}/js/datatables.js"></script>
 
     @livewireScripts()
 

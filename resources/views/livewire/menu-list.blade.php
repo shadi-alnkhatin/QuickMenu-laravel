@@ -1,4 +1,4 @@
-<div class="menu-list" >
+
 
 
     <div class="container mt-4 my-4">
@@ -11,7 +11,7 @@
             @livewire('menu-card', ['dish' => $dish], key($dish->id))
         @endforeach
     </div>
-</div>
+
 
 
 

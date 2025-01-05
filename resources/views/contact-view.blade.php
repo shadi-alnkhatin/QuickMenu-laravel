@@ -1,23 +1,15 @@
 @extends('layouts.base')
 @section('head')
-    <base href="./">
     <meta charset="utf-8">
     <title>Contact Admin</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="theme-color" content="#ffffff">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" />
     <!-- Vendors styles-->
     <link rel="stylesheet" href="{{asset('assets')}}/vendors/simplebar/css/simplebar.css">
-    <!-- Main styles for this application-->
     <link href="{{asset('assets')}}/css/style.css" rel="stylesheet">
-    <!-- We use those styles to show code examples, you should remove them in your application.-->
-    <link href="{{asset('assets')}}/css/examples.css" rel="stylesheet">
-    <script src="{{asset('assets')}}/js/config.js"></script>
-    <script src="{{asset('assets')}}/js/color-modes.js"></script>
-    <link href="{{asset('assets')}}/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+
     <style>
         body {
             background: rgb(249, 247, 247);

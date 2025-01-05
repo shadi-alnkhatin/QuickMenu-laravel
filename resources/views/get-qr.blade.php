@@ -9,20 +9,26 @@
   <link rel="stylesheet" href="{{asset('assets')}}/vendors/simplebar/css/simplebar.css">
   <!-- Main styles for this application-->
   <link href="{{asset('assets')}}/css/style.css" rel="stylesheet">
-  <!-- We use those styles to show code examples, you should remove them in your application.-->
-  <link href="{{asset('assets')}}/css/examples.css" rel="stylesheet">
-  <script src="{{asset('assets')}}/js/config.js"></script>
-  <script src="{{asset('assets')}}/js/color-modes.js"></script>
-  <script src="js/config.js"></script>
-    <script src="js/color-modes.js"></script>
-    <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.0.0/mdb.min.css" rel="stylesheet" />
- @endsection
+    <style>
+        .steps{
+            margin-top: 200px;
+            margin-left: 60px;
+        }
+        @media(max-width:986px){
+            .steps{
+                margin-top: 30px;
+                margin-left: 17px;
+            }
+        }
+    </style>
+    @endsection
 
 @section('content')
 <div class="container mt-5">
@@ -45,7 +51,7 @@
         </div>
 
         <!-- Steps Section -->
-        <div class="col-lg-6 col-md-12 " style="margin-left: 60px; margin-top:200px">
+        <div class="col-lg-6 col-md-12 steps">
             <h3 class=" mb-4">Steps to Use Your QR Code</h3>
             <div class="steps-container">
                 <details class="mb-3">

@@ -5,56 +5,52 @@ namespace App\Livewire;
 use App\Models\Order;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class RestaurantOrders extends Component
 {
-    public $menus=[];
-    public $menuId = null; // Make sure this is public
-    public $orders = [];
+    use WithPagination;
+
+    public $menus = [];
+    public $menuId = null;
     public $selectedOrder = null;
-
-    public function mount()
-    {
-        $this->refreshOrders();
-    }
-
 
     #[On('NewOrderPlaced')]
     public function refreshOrders()
     {
-        $this->orders = $this->menuId
-            ? Order::where('menu_id', $this->menuId)->latest()->get()
-            : [];
+        $this->resetPage(); // Reset pagination to the first page
     }
-
 
     public function updatedMenuId()
     {
         $this->refreshOrders();
         $this->dispatch('menuUpdated', $this->menuId);
     }
+
     public function updateStatus($orderId, $newStatus)
     {
-        // dd($orderId, $newStatus);
-    $order = Order::find($orderId);
+        $order = Order::find($orderId);
 
-    if ($order) {
-        $order->status = $newStatus;
-        $order->save();
+        if ($order) {
+            $order->status = $newStatus;
+            $order->save();
+        }
+
+        $this->refreshOrders();
     }
 
-    // Refresh orders to reflect changes
-    $this->refreshOrders();
-    }
     public function getOrderDetail($orderId)
     {
-        // dd($orderId);
-    $this->selectedOrder = Order::find($orderId);
-    $this->dispatch('openModal');
+        $this->selectedOrder = Order::find($orderId);
+        $this->dispatch('openModal');
     }
 
     public function render()
     {
-        return view('livewire.restaurant-orders',['orders' => $this->orders]);
+        return view('livewire.restaurant-orders', [
+            'orders' => $this->menuId
+                ? Order::where('menu_id', $this->menuId)->latest()->paginate(5)
+                : collect() // Return an empty collection if no menu is selected
+        ]);
     }
 }

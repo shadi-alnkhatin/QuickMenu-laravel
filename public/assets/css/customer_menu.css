@@ -1,13 +1,5 @@
 
 
-.header-section {
-    background-color: #f8f9fa; /* Light background */
-    border-color: #ddd; /* Light gray border */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    filter: contrast(0.8);
-}
 .cafe-info{
     background-color: #33333389;
 
@@ -28,6 +20,9 @@
     font-size: 0.95rem;
     color: #555;
     margin: 0;
+}
+.menu-list{
+    z-index: 1;
 }
 
 input[type="number"] {
@@ -54,8 +49,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
   @media(max-width:760px){
       .menu-card-img {
-      width: 100% !important; /* Ensures the image takes the full width of its container */
-      height: 230px; /* Maintains the aspect ratio of the image */
-      object-fit: cover; /* Ensures the image covers the container while maintaining its aspect ratio */
-  }
-  }
+      width: 100% !important;
+      height: 230px;
+      object-fit: cover;
+  }}

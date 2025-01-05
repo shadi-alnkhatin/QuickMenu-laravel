@@ -5,11 +5,7 @@
 
  <base href="./">
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
-    <meta name="keyword" content="Bootstrap,Admin,Template,SCSS,HTML,RWD,Dashboard">
     <title>Users</title>
 
     <meta name="msapplication-TileColor" content="#ffffff">
@@ -19,31 +15,39 @@
     <link rel="stylesheet" href="{{asset('assets')}}/vendors/simplebar/css/simplebar.css">
     <!-- Main styles for this application-->
     <link href="{{asset('assets')}}/css/style.css" rel="stylesheet">
-    <!-- We use those styles to show code examples, you should remove them in your application.-->
-    <link href="{{asset('assets')}}/css/examples.css" rel="stylesheet">
-    <script src="{{asset('assets')}}/js/config.js"></script>
-    <script src="{{asset('assets')}}/js/color-modes.js"></script>
     <link href="{{asset('assets')}}/vendors/datatables.net-bs5/css/dataTables.bootstrap5.css" rel="stylesheet">
- @endsection
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" />
+    <style>
+          .toast {
+         opacity: 1 !important;
+         z-index: 9999; /* Ensure it appears above other elements */
+         }
+         .toast-success {
+             background-color: #1d9f3c !important; /* Light green */
+             color: #dfe0df !important; /* Dark green text */
+         }
+    </style>
+    @endsection
 @section('content')
 
       <div class="body flex-grow-1">
         <div class="container-lg px-4">
-          <div class="fs-2 fw-semibold">USERS</div>
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item"><a href="#" data-coreui-i18n="home">Home</a>
-              </li>
-
-              <li class="breadcrumb-item active"><span>USERS</span>
-              </li>
-            </ol>
-          </nav>
-          <div class="d-flex justify-content-end mb-3">
-            <button type="button" data-coreui-toggle="modal" data-coreui-target="#addUserModal" class="btn btn-primary text-light">
-              <i class="fas fa-plus"></i> Add User
-            </button>
-          </div>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                  <div class="fs-2 fw-semibold">USERS</div>
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                      <li class="breadcrumb-item"><a href="#" data-coreui-i18n="home">Home</a></li>
+                      <li class="breadcrumb-item active"><span>USERS</span></li>
+                    </ol>
+                  </nav>
+                </div>
+                <button type="button" data-coreui-toggle="modal" data-coreui-target="#addUserModal" class="btn btn-primary text-light">
+                  <i class="fas fa-plus"></i> Add User
+                </button>
+              </div>
           <div class="card mb-4">
             <div class="card-header"> Users</div>
             <div class="card-body">
@@ -70,7 +74,7 @@
                             <td>{{$user->email}}</td>
                             <td>{{{$user->created_at->format('Y-m-d')}}}</td>
                             <td>{{$user->role}}</td>
-                            
+
                             <td>
                                 {{-- <a class="btn btn-success me-2" href="#">
                                 <svg class="icon">
@@ -105,6 +109,11 @@
       </div>
 
     </div>
+    @if(session('success'))
+  <script>
+      toastr.success("{{ session('success') }}");
+  </script>
+@endif
    @include('user-crud-modals')
 
     <!-- CoreUI and necessary plugins-->
@@ -167,8 +176,7 @@
     <script src="{{asset('assets')}}/vendors/datatables.net/js/dataTables.min.js"></script>
     <script src="{{asset('assets')}}/vendors/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
     <script src="{{asset('assets')}}/js/datatables.js"></script>
-    <script>
-    </script>
+   
 @endsection
 
 

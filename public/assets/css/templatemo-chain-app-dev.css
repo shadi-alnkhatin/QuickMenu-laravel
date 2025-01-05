@@ -129,7 +129,7 @@ p {
   font-size: 15px;
   line-height: 30px;
   font-weight: 300;
-  color: #afafaf;
+  color: #6e6e6e;
 }
 
 img {
@@ -243,7 +243,7 @@ body {
   margin-left: 8px;
 }
 
-.gradient-button a {
+.gradient-button  {
   display: inline-block !important;
   padding: 10px 20px !important;
   color: #fff !important;
@@ -257,7 +257,7 @@ body {
   transition: all .5s;
 }
 
-.gradient-button a:hover {
+.gradient-button:hover {
   color: #fff !important;
   background: rgb(19,175,240);
   background: linear-gradient(105deg, rgba(91,104,235,1) 0%, rgba(40,225,253,1) 100%);
@@ -954,6 +954,10 @@ About Us
 .about-us .gradient-button {
   margin-top: 30px;
   margin-bottom: 10px;
+
+}
+.about-us .gradient-button a{
+    color: white !important;
 }
 
 .about-us span {
@@ -1560,7 +1564,7 @@ a.btn_red {
 }
 
 .centeredText {
-  color: #afafaf;
+  color: #6e6e6e;
   text-align: center;
   margin: 20px 0;
   clear: both;

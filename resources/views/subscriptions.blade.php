@@ -72,7 +72,6 @@
                           <th>Status</th>
                           <th>Price</th>
                           <th>End At</th>
-                          <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -88,13 +87,7 @@
                             </td>
                             <td class="text-center"><strong>{{ $subscription->stripe_price }}$</strong></td>
                             <td>{{ $subscription->ends_at->format('Y-m-d') }}</td>
-                            <td>
-                                <button class="btn btn-danger delete-user-btn" type="button">
-                                    <svg class="icon text-light">
-                                        <use xlink:href="{{ asset('assets/vendors/@coreui/icons/svg/free.svg#cil-trash') }}"></use>
-                                    </svg>
-                                </button>
-                            </td>
+
                         </tr>
                         @endforeach
                     </tbody>

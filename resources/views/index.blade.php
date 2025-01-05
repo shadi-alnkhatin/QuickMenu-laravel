@@ -5,19 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Dashboard</title>
-
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
     <!-- Vendors styles-->
     <link rel="stylesheet" href="{{asset('assets')}}/vendors/simplebar/css/simplebar.css">
-    <!-- Main styles for this application-->
     <link href="{{asset('assets')}}/css/style.css" rel="stylesheet">
-    <!-- We use those styles to show code examples, you should remove them in your application.-->
-    <link href="{{asset('assets')}}/css/examples.css" rel="stylesheet">
-    <script src="{{asset('assets')}}/js/config.js"></script>
-    <script src="{{asset('assets')}}/js/color-modes.js"></script>
-    <link href="{{asset('assets')}}/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+
 @endsection
 @section('content')
     {{-- Sidebar here --}}
@@ -75,7 +66,7 @@
               <div class="card mb-4">
                 <div class="card-body p-4">
                   <div class="card-title fs-4 fw-semibold" data-coreui-i18n="traffic">Traffic</div>
-                  <div class="card-subtitle text-body-secondary"><span data-coreui-i18n-date="date, { 'date': '2024, 1, 1'}" data-coreui-i18n-date-format="{ 'year': 'numeric', 'month': 'long', 'day': 'numeric' }">Dec,01, 2024</span>&nbsp;-&nbsp;<span data-coreui-i18n-date="date, { 'date': '2022, 12, 31'}" data-coreui-i18n-date-format="{ 'year': 'numeric', 'month': 'long', 'day': 'numeric' }">Dec 31, 2024</span></div>
+                  <div class="card-subtitle text-body-secondary"><span data-coreui-i18n-date="date, { 'date': '2024, 1, 1'}" data-coreui-i18n-date-format="{ 'year': 'numeric', 'month': 'long', 'day': 'numeric' }">jan,01, 2024</span>&nbsp;-&nbsp;<span data-coreui-i18n-date="date, { 'date': '2024, 12, 31'}" data-coreui-i18n-date-format="{ 'year': 'numeric', 'month': 'long', 'day': 'numeric' }">Dec 31, 2024</span></div>
                   <div class="chart-wrapper" style="height:300px;margin-top:40px;">
                     <canvas class="chart" id="main-bar-chart" height="300"></canvas>
                   </div>
