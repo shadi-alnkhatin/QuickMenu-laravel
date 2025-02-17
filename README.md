@@ -1,5 +1,6 @@
-**📌 Quick Menu – QR-Based Digital Menu for Restaurants & Cafés
-**🚀 About the Project
+**📌 Quick Menu – QR-Based Digital Menu for Restaurants & Cafés**
+
+🚀 About the Project
 Quick Menu is a web-based platform that allows restaurants and cafés to create digital menus accessible via QR codes. Customers can scan the QR code to view the menu, place orders, and enjoy a seamless ordering experience without needing a physical menu.
 
  Key Features
